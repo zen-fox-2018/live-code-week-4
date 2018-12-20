@@ -12,7 +12,7 @@ app.use(express.urlencoded({extended: false}))
 
 app.use('/', route)
 app.use('/kingdoms', kingdom)
-app.use('/soldier', soldier)
+app.use('/soldiers', soldier)
 
 app.listen(port, (req, res) => {
     console.log('Running on port .... ', port)

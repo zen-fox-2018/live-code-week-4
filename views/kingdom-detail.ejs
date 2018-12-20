@@ -2,12 +2,12 @@
 <%- include partials/navbar.ejs %>
 <table>
     <table>
-
         <tr>
             <th>Kingdom Name</th>
-            <th>King Name</th>
+            <th>Distric Name</th>
             <th>Total Army</th>>
         </tr>
+        
         <tr>
             <td><%= kingdom.kingdomName %></td>
             <td><%= kingdom.nameOfKing %></td>
@@ -23,16 +23,5 @@
         <button>Add Soldier</button>
     </form>
 
-    <h1>Add District</h1>
-    <form action="/soldiers/<%= kingdom.id %>" method="POST">
-        <div class="radio">
-            <label><input type="radio" name="optradio" checked>kingdom1</label>
-            </div>
-            <div class="radio">
-            <label><input type="radio" name="optradio">kingdom2</label>
-            </div>
-            <div class="radio disabled">
-            <label><input type="radio" name="optradio" disabled>Option 3</label>
-        </div>              
-    </form>
+   
 </table>
