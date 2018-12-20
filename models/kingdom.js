@@ -4,12 +4,13 @@ module.exports = (sequelize, DataTypes) => {
     kingdomName: DataTypes.STRING,
     nameOfking: DataTypes.STRING,
     DistrictId: DataTypes.INTEGER,
-    population : { type : Sequelize.INTEGER,
+    population : { type : DataTypes.INTEGER,
       defaulValue : 4,
       allowNull: false}
   }, {});
   Kingdom.associate = function(models) {
-    // associations can be defined here
+    Kingdom.hasMany (models.Soldier)
+  //  Kingdom.belongsTo (models.District)
   };
   return Kingdom;
 };

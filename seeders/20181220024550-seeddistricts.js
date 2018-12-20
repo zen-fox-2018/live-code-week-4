@@ -2,29 +2,29 @@
 
 let obj = [{districtName : 'Prontera',
             createdAt: new Date,
-            updatedAt: new Date,
-            population : 4
+            updatedAt: new Date
+            
             },
             {districtName : 'Payon',
             createdAt: new Date,
-            updatedAt: new Date,
-            population : 4 },
+            updatedAt: new Date
+        },
             {districtName : 'Morroc',
             createdAt: new Date,
-            updatedAt: new Date,
-            population : 4 },
+            updatedAt: new Date
+          },
             {districtName : 'Izlude',
             createdAt: new Date,
-            updatedAt: new Date,
-            population : 4 },
+            updatedAt: new Date
+           },
             {districtName : 'Geffen',
             createdAt: new Date,
-            updatedAt: new Date,
-            population : 4 },
+            updatedAt: new Date
+          },
             {districtName : 'Juno',
             createdAt: new Date,
-            updatedAt: new Date,
-            population : 4 }
+            updatedAt: new Date
+        }
           ]
 module.exports = {
   up: (queryInterface, Sequelize) => {
@@ -38,7 +38,7 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
-   return queryInterface('Districts', obj)
+   return queryInterface.bulkInsert('Districts', obj)
   },
 
   down: (queryInterface, Sequelize) => {

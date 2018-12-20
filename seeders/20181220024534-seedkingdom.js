@@ -3,27 +3,32 @@
 let obj = [{kingdomName: "Endless",
             nameOfking: "lucius",
             createdAt: new Date,
-            updatedAt: new Date
+            updatedAt: new Date,
+            population : 4
           },
           {kingdomName: "Spartan",
             nameOfking: "Draco",
             createdAt: new Date,
-            updatedAt: new Date
+            updatedAt: new Date,
+            population : 4
           },
           {kingdomName: "Rendezvous",
             nameOfking: "harry",
             createdAt: new Date,
-            updatedAt: new Date
+            updatedAt: new Date,
+            population : 4
           },
           {kingdomName: "Battle Leader",
             nameOfking: "genggis",
             createdAt: new Date,
-            updatedAt: new Date
+            updatedAt: new Date,
+            population : 4
           },
           {kingdomName: "Kapak Merah",
             nameOfking: "Gatot",
             createdAt: new Date,
-            updatedAt: new Date
+            updatedAt: new Date,
+            population : 4
           }]
 
 

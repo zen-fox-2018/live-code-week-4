@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     KingdomId: DataTypes.INTEGER
   }, {});
   Soldier.associate = function(models) {
-    // associations can be defined here
+    Soldier.belongsTo (models.Kingdom)
   };
   return Soldier;
 };
