@@ -1,8 +1,18 @@
 const Routes = require('express').Router()
-const {Soldier, District} = require('../../models')
+const {Soldier, District, Kingdom} = require('../../models')
 
 Routes.get("/", (req, res) => {
-    res.send("soldier nih")
+    Kingdom.findAll({
+        include: {
+            model:Soldier
+        }
+    })
+    .then((data) => {
+        res.send(data)
+    })
+    .catch((err) => {
+        res.send(err)
+    })
 })
 Routes.post('/:kingdomId', (req, res) => {
     // res.send(req.params)

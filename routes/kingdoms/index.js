@@ -15,6 +15,9 @@ Routes.get("/", (req, res) => {
 })
 
 Routes.get("/:kingdomsId", (req, res) => {
+    if (req.query.error) {
+        const err = req.query.error
+    }
     // res.send(req.params)
     let kingdom = null
     Kingdom.findOne({
@@ -30,7 +33,7 @@ Routes.get("/:kingdomsId", (req, res) => {
        return District.findAll()
     })
     .then(districts => {
-        res.render("details.ejs", {kingdom, districts})
+        res.render("details.ejs", {kingdom, districts, err})
     })
     .catch(err => {
         res.redirect(`/kingdoms?error=${err}`)
@@ -58,7 +61,7 @@ Routes.post('/:kingdomsId', (req, res) => {
             }
         })
         .catch((err) => {
-            console.log(err)
+            res.send(err)
         })
 })
 

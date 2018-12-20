@@ -7,6 +7,12 @@
 <body>
     <%- include('./partials/navbar.ejs') %>
     <br>
+    <%if (err) { %>
+       <% err.forEach(errr => { %>
+            <h3><%= errr.message %></h3>
+       <% }) %>
+    <%}
+    <br>
     <h1><%= JSON.stringify(kingdom)%></h1>
     <div class="card" style="width: 18rem;">
             <div class="card-body">
@@ -32,10 +38,11 @@
     <form method="POST">
 
         <%  districts.forEach(district => { %>
-             <% if (district.id === kingdom.DistrictId) { %>
+            <h1><%= JSON.stringify(district)  %></h1>
+             <% if (district.KingdomId === kingdom.DistrictId) { %>
                   <div class="custom-control custom-radio" >
                     <input type="radio" class="custom-control-input" id="defaultChecked" name="DistrictId" value="<%= district.id %>" checked>
-                    <label class="custom-control-label"  for="defaultChecked" ><%= district.districName %></label>
+                    <label class="custom-control-label"  for="defaultChecked" ><%= district.districtName %></label>
                   </div>
       
              <% } else { %>
