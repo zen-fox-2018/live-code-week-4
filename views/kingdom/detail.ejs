@@ -16,11 +16,38 @@
     <br>
     <br>
     <div class="container">
-        <h1><%=data.kingdomName%></h1>
-        <h3>KINGDOM</h3>    
-        <h3><%=getDistrict(data.pasukan)%></h3>
-        
+        <h1>
+            <%=data.kingdomName%>
+        </h1>
+        <h3>
+            <%=data.getSoldier(data.Soldiers)%>
+        </h3>
+        <h3>
+            <%=getDistrict(data.pasukan)%>
+        </h3>
+        <br>
+        <br>
+        <h1>Add Soldier</h1>
+        <%if(err != null) {%>
+        <div class="alert alert-danger" role="alert">
+            <%=err%>
+        </div>
+        <%}%>
+        <form action="/soldiers/<%=data.id%>" method="POST">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Name</label>
+                <input name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    placeholder="Enter name">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Attack</label>
+                <input name="attack" type="number" class="form-control" id="exampleInputPassword1" placeholder="Attack">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     </div>
+
+
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>

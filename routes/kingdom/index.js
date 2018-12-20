@@ -6,7 +6,8 @@ route.get(`/`, (req, res) => {
     Model.Kingdom.findAll()
         .then((result) => {
             res.render(`./kingdom/index.ejs`, {
-                data: result
+                data: result,
+                err: req.query.err
             })
         }).catch((err) => {
             res.send(err)
@@ -23,10 +24,11 @@ route.get(`/:id`, (req, res) => {
         }]
     })
         .then((result) => {
-            res.send(result)
+            // res.send(result)
             res.render(`./kingdom/detail.ejs`, {
                 data: result,
-                getDistrict: getDistrict
+                getDistrict: getDistrict,
+                err: req.query.err
             })
         }).catch((err) => {
             res.send(err)

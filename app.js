@@ -1,11 +1,11 @@
 const express = require(`express`)
+const app = express()
 var kingdom = require(`./routes/kingdom/index.js`)
 var soldier = require(`./routes/soldier/index.js`)
-const app = express()
 
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 app.set(`view engine`, `ejs`)
-app.set(express.urlencoded({ extended: true }))
-app.set(express.json())
 
 app.use(`/kingdoms`, kingdom)
 app.use(`/soldiers`, soldier)

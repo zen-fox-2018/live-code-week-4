@@ -9,13 +9,17 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: 4
     }
   }, {});
-  Kingdom.associate = function(models) {
+  Kingdom.associate = function (models) {
     Kingdom.hasMany(models.Soldier)
     Kingdom.belongsTo(models.District)
   };
 
-  Kingdom.getSoldier = function (data) {
-    return `${data} Pasukan!`
+  Kingdom.prototype.getSoldier = function (data) {
+    let counter = 0
+    data.forEach(element => {
+      counter++
+    });
+    return `${counter} pasukan`
   }
   return Kingdom;
 };
