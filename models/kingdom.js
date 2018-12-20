@@ -29,5 +29,21 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
 
+  Kingdom.getEnemy = function(districtId) {
+    return new Promise ((resolve, reject) => {
+      sequelize.models.Kingdom.findOne({
+        where: {DistrictId: districtId},
+        include: {model: sequelize.models.Soldier}
+      })
+        .then(enemy => {
+          resolve(enemy)
+        })
+        .catch(err => {
+          reject(err)
+        })
+    })
+
+  }
+
   return Kingdom;
 };

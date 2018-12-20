@@ -24,7 +24,7 @@ routes.get('/:kingdomId', (req, res) => {
         })
         .then(districts => {
             // res.send(kingdom.getSoldiers())
-            res.render('kingdomDetail.ejs', { districts, kingdom })
+            res.render('kingdomDetail.ejs', { districts, kingdom, err: req.query.err })
         })
         .catch(err => {
             res.send(err)
@@ -33,7 +33,28 @@ routes.get('/:kingdomId', (req, res) => {
 })
 
 routes.post('/:kingdomId', (req, res) => {
+    Kingdom.getEnemy()
+        .then(enemy => {
+            if (!enemy) {
+                let obj = {
+                    DistrictId: req.body.id
+                }
+                return Kingdom.update(obj, {where: {id: req.params.kingdomId}})
+            } else {
+                let atck = 0
+                let enemyAtck = 0
+                enemy.Soldiers.forEach(soldier => {
+                    enemyAtck += soldier.attack
+                });
+                Kingdom.findOne({
+                    where: {id: req.params.kingdomId},
+                    include: {model: Soldier}
+                })
+                    .then(kingdom => {
 
+                    })
+            }
+        })
 })
 
 module.exports = routes

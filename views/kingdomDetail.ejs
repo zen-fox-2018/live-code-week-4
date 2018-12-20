@@ -12,6 +12,7 @@
 
 <div class="container">
   <h2>Kingdom Detail</h2>    
+  <b><%= err %></b>
   <table class="table">
     <thead>
       <tr>
@@ -47,7 +48,7 @@
   <h2>District</h2>
     <form action="#" method="POST">
         <% districts.forEach(district => { %>
-            <input type="radio" name="<%= district.districtName %>"><%= district.districtName %><br>
+            <input type="radio" value="<%= district.id %>" name="id"><%= district.districtName %><br>
         <% }) %>
         <button type="submit" class="btn btn-default">Attack</button>
     </form>
