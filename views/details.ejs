@@ -15,7 +15,7 @@
               <p class="card-text"> Total Soldier :<%= kingdom.getSoldier() %></p>
             </div>
           </div>
-    <form method="POST" action="/kingdoms/<%= kingdom.id %>">
+    <form method="POST" action="/soldiers/<%= kingdom.id %>">
     <div class="form-group">
     <label for="exampleInputEmail1">Name</label>
     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name">
@@ -26,7 +26,32 @@
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+    <br>
+    <!-- Default unchecked -->
+    <h1> District </h1>
+    <form method="POST">
 
+        <%  districts.forEach(district => { %>
+             <% if (district.id === kingdom.DistrictId) { %>
+                  <div class="custom-control custom-radio" >
+                    <input type="radio" class="custom-control-input" id="defaultChecked" name="DistrictId" value="<%= district.id %>" checked>
+                    <label class="custom-control-label"  for="defaultChecked" ><%= district.districName %></label>
+                  </div>
+      
+             <% } else { %>
+                  <div class="custom-control custom-radio">
+                          <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios">
+                          <label class="custom-control-label" for="defaultUnchecked"><%= district.districtName%></label>
+                        </div>
+      
+             <% } %>
+         <% }) %>
+          <% if (!kingdom.DistrictId) { %>
+              <button type="submit" class="btn btn-primary" >Submit</button>
+         <% } %>
+    </form>
+      
+      <!-- Default checked -->
 
     <%- include('./partials/footer.ejs') %>
 </body>

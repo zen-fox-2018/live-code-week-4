@@ -18,8 +18,9 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   Kingdom.prototype.getSoldier = function () {
-    if (Kingdom.Soldier) {
-      return kingdom.Soldiers.length -1 + " " + "pasukan"
+    if (this.Soldiers) {
+
+      return this.Soldiers.length + " " + "pasukan"
     } else {
       return "0 pasukan"
     }

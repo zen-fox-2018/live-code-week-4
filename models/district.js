@@ -8,5 +8,21 @@ module.exports = (sequelize, DataTypes) => {
     District.belongsTo(models.Kingdom)
     // associations can be defined here
   };
+
+  District.checkKingdom = function () {
+    return new Promise ((resolve, reject) => {
+      District.getKingdom()
+        .then(kingdom => {
+          if (kingdom) {
+            resolve(true)
+          } else {
+            resolve(false)
+          }
+        })
+        .catch((err) => {
+          reject(err)
+        })
+    })
+  }
   return District;
 };

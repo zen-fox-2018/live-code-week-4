@@ -9,7 +9,7 @@ Routes.get("/", (req, res) => {
             res.render("kingdoms.ejs", {kingdoms})
         })
         .catch((err) => {
-            console.log(err, "========")
+            
             res.redirect(`/?error= ${err}`)
         })
 })
@@ -27,16 +27,39 @@ Routes.get("/:kingdomsId", (req, res) => {
     })
     .then(Kingdom => {
         kingdom = Kingdom
-        res.render("details.ejs", {kingdom})
+       return District.findAll()
+    })
+    .then(districts => {
+        res.render("details.ejs", {kingdom, districts})
     })
     .catch(err => {
-        console.log(err, "###########")
         res.redirect(`/kingdoms?error=${err}`)
     })
 })
 
 Routes.post('/:kingdomsId', (req, res) => {
-    res.send(req.body)
+    District.checkKingdom()
+        .then(data => {
+            if (data === true) {
+
+            } else {
+                Kingdom.findOne({where: {
+                    id: req.params.kingdomsId
+                }}) 
+                .then(data => {
+                    if (data) {
+                        data.DistrictId = req.body.DistrictId
+                      return  Kingdom.update(data, {id:req.params.kingdomsId})
+                    }
+                })
+                .then((data) => {
+
+                })
+            }
+        })
+        .catch((err) => {
+            console.log(err)
+        })
 })
 
 
