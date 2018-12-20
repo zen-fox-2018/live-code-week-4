@@ -5,8 +5,8 @@ const Model = require('../models')
 router.get('/',(req,res)=>{
     Model.Kingdoms.findAll()
     .then(allKingdomData=>{
-        res.send(allKingdomData)
-        // res.render('Kingdom.ejs',{data:allKingdomData})
+        // res.send(allKingdomData)
+        res.render('Kingdom.ejs',{data:allKingdomData})
     })
     .catch(err=>{
         res.send(err)
@@ -36,6 +36,21 @@ router.get('/:id',(req,res)=>{
     })
     .catch(err=>{
         res.send(err)
+    })
+})
+
+router.post('/:kingdomId',(req,res)=>{
+    let idKerajaan = req.params.kingdomId
+    let newKingdomData = req.body
+    let objKingdom = {
+        id : idKerajaan,
+        DistrictId : newKingdomData['districtId']
+    }
+    Model.Kingdoms.update(objKingdom, {
+        where : {id : idKerajaan}
+    })
+    .then(()=>{
+        res.redirect(`/kingdoms/${idKerajaan}`)
     })
 })
 

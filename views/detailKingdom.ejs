@@ -6,30 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Live Code Week 4</title>
-    <style>
-        table, th, td {
-              border: 1px solid black;
-              padding: 5px;
-            }
-            table {
-              border-spacing: 15px;
-            }
-            </style>
+    <%- include ./partials/style.ejs  %>
 </head>
 
 <body>
+        <%- include ./partials/header.ejs  %>
+
     <h1>Kingdom
         <%= data.kingdomName %>
     </h1>
-    <h3>Jumlah Pasukan = <%= data.Soldiers.length %> </h3>
+    <h3>Jumlah Pasukan =
+        <%= data.Soldiers.length %>
+    </h3>
     <h3 style="color:red">%%%%%%%%%%%%%%%%%%%</h3>
     <form action="/soldiers/<%= data.id %>" method="POST">
         <h2>Add Soldier</h2>
         Name :<br>
-        <input type="text" name="name" >
+        <input type="text" name="name">
         <br>
         Attack :<br>
-        <input type="text" name="attack" >
+        <input type="text" name="attack">
         <br><br>
         <input type="submit" value="Add Soldier">
     </form>
@@ -37,9 +33,16 @@
     <form action="/kingdoms/<%= data.id %>" method="POST">
         <h2>Take District!</h2>
         <% distrik.forEach(elemen=>{ %>
-            <input type="radio" name="districtName" value="<%= elemen.id %>"><%= elemen.districtName %><br>
-        <% }) %>
-        
+        <% if (elemen.id == data.districtId) { %>
+        <input type="radio" name="districtId" checked="" value="<%= elemen.id %>">
+        <%= elemen.districtName %><br>
+        <% } else { %>
+
+        <input type="radio" name="districtId" value="<%= elemen.id %>">
+        <%= elemen.districtName %><br>
+
+        <%} }) %>
+
         <input type="submit" value="Get District">
 
     </form>

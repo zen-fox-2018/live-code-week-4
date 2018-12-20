@@ -20,4 +20,14 @@ router.post('/:kingdomId',(req,res)=>{
     })
 })
 
+router.get('/',(req,res)=>{
+    Model.Soldiers.findAll()
+    .then(allDataSoldiers=>{
+        res.send(allDataSoldiers)
+    })
+    .catch(err=>{
+        res.send(err)
+    })
+})
+
 module.exports = router
