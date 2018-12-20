@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/header.ejs') %>
+    <title>Document</title>
+</head>
+<body>
+    <%- include('./partials/navbar.ejs') %>
+    <br>
+    <%if (err) { %>
+       <% err.forEach(errr => { %>
+            <h3><%= errr.message %></h3>
+       <% }) %>
+    <%}
+    <br>
+    <h1><%= JSON.stringify(kingdom)%></h1>
+    <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title"><%= kingdom.kingdomName %></h5>
+              <h6 class="card-subtitle mb-2 text-muted"><%= kingdom.getDistrict()%></h6>
+              <p class="card-text"> Total Soldier :<%= kingdom.getSoldier() %></p>
+            </div>
+          </div>
+    <form method="POST" action="/soldiers/<%= kingdom.id %>">
+    <div class="form-group">
+    <label for="exampleInputEmail1">Name</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name">
+    </div>
+    <div class="form-group">
+    <label for="exampleInputPassword1">attack</label>
+    <input type="text" class="form-control" id="exampleInputPassword1" name="attack">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <br>
+    <!-- Default unchecked -->
+    <h1> District </h1>
+    <form method="POST">
+
+        <%  districts.forEach(district => { %>
+            <h1><%= JSON.stringify(district)  %></h1>
+             <% if (district.KingdomId === kingdom.DistrictId) { %>
+                  <div class="custom-control custom-radio" >
+                    <input type="radio" class="custom-control-input" id="defaultChecked" name="DistrictId" value="<%= district.id %>" checked>
+                    <label class="custom-control-label"  for="defaultChecked" ><%= district.districtName %></label>
+                  </div>
+      
+             <% } else { %>
+                  <div class="custom-control custom-radio">
+                          <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios">
+                          <label class="custom-control-label" for="defaultUnchecked"><%= district.districtName%></label>
+                        </div>
+      
+             <% } %>
+         <% }) %>
+          <% if (!kingdom.DistrictId) { %>
+              <button type="submit" class="btn btn-primary" >Submit</button>
+         <% } %>
+    </form>
+      
+      <!-- Default checked -->
+
+    <%- include('./partials/footer.ejs') %>
+</body>
+</html>
