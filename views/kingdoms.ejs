@@ -10,10 +10,17 @@
           </thead>
           <tbody>
               <% for (let i = 0 ; i< data.length; i++) { %>
-                <tr>
-                  <td><%= data[i].kingdomName %></td>
-                  <td> <a href="/kingdoms/<%= data[i].id %>"> Details</a> </td>
-                </tr>
+                <% if (data[i].DistrictId) { %>
+                  <tr class="warning">
+                      <td><%= data[i].kingdomName %></td>
+                      <td> <a href="/kingdoms/<%= data[i].id %>"> Details</a> </td>
+                    </tr>
+                <%} else { %>
+                  <tr>
+                    <td><%= data[i].kingdomName %></td>
+                    <td> <a href="/kingdoms/<%= data[i].id %>"> Details</a> </td>
+                  </tr>
+                <% } %>
               <% } %>
           </tbody>
         </table>

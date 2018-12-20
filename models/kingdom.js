@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       return `unassign`
     } else {
       console.log('masukkk district')
-      sequelize.models.District.findOne({where: {id: this.DistrictId}})
+      sequelize.models.District.findOne({attributes: ['id', 'districtName'] ,where: {id: this.DistrictId}})
         .then(data => {
           console.log(data, 'districtnya')// g bisaaa dibilang gada kingdom id emng gada di districtny
           return data.dataValues.districtName
