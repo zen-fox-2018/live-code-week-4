@@ -2,13 +2,14 @@ const route = require('express').Router()
 const { Soldier, Kingdom } = require('../models')
 
 route.get('/', (req, res) => {
-    Soldier.findAll({
+    Soldier.findAndCountAll({
         include: [{
             model: Kingdom
         }]
     })
     .then(soldiers => {
-        res.render('soldier.ejs', {soldiers})
+        res.send(soldiers.rows)
+        // res.render('soldier.ejs', {soldiers})
     })
     .catch(err => {
         res.send(err)
