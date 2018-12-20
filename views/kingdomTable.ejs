@@ -12,7 +12,7 @@
         <% allKingdoms.forEach(e => { %>
         <tr>
               <td> <%= e.kingdomName %> </td> 
-              <td><a href="">Kingdom Details</a></td>
+              <td><a href="/kingdoms/<% e.id %>">Kingdom Details</a></td>
         </tr>
         <% }) %>
       </table>

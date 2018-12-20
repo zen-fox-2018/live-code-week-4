@@ -20,12 +20,11 @@ router.get('/:kingdomId', (req, res) => {
     let kingdom = null;
     Model.Kingdom.findByPk(req.params.kingdomId)
     .then(kingdomDetail => {
-        // res.send(kingdomDetail)
         kingdom = kingdomDetail
         return Model.District.findAll()
     })
     .then(allDistricts => {
-        // res.send(allDistricts)
+        res.send(allDistricts)
         let err = req.query.error
         res.render('./kingdomDetail', {
             kingdomDetail: kingdom,
@@ -41,9 +40,9 @@ router.get('/:kingdomId', (req, res) => {
     })
 })
 
-router.post(':kingdomId', (req, res) => {
+// router.post(':kingdomId', (req, res) => {
 
-})
+// })
 
 
 module.exports = router
