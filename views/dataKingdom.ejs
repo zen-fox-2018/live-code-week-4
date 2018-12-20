@@ -30,12 +30,21 @@
       <%= detailKingdoms.kingdomName %>
     </h2>
 
+    <% if (detailKingdoms.District == null) { %>
+    <h3>
+      District: Unasssigned
+    </h3>
+    <% } else { %>
     <h3>
       District:
-      <%= kName(detailKingdoms.District) %>
+      <%= detailKingdoms.District.districtName %>
     </h3>
 
-    <p>Total Soldier : </p>
+    <% } %>
+
+    <p>Total Soldier :
+      <%= detailKingdoms.Soldiers.length %>
+    </p>
 
   </div>
 
