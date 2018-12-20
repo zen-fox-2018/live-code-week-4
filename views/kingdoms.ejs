@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1 align="center"> Kingdom List</h1>
+    <table align="center">
+      <% dataKingdom.forEach(item =>{ %>
+        <tr>
+          <td><%= item.kingdomName%></td>
+          <td>
+            <a href="/kingdoms/<%= item.id%>"> details </a>
+          </td>
+        </tr>
+      <% }) %>
+    </table>
+  </body>
+</html>
