@@ -13,10 +13,10 @@ module.exports = (sequelize, DataTypes) => {
     // }),
     Kingdom.hasMany(models.Soldier , {
       foreignKey : 'KingdomId'
-    }),
-    Kingdom.hasOne(models.District, {
-      foreignKey : 'DistrictId'
     })
+    // Kingdom.hasOne(models.District, {
+    //   foreignKey : 'DistrictId'
+    // })
   };
   return Kingdom;
 };

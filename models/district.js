@@ -1,12 +1,11 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const District = sequelize.define('District', {
-    districtName: DataTypes.STRING,
-    population: DataTypes.INTEGER
+    districtName: DataTypes.STRING
   }, {});
   District.associate = function(models) {
     // associations can be defined here
-    District.hasOne(models.Kingdom)
+    // District.hasOne(models.Kingdom)
   };
   return District;
 };

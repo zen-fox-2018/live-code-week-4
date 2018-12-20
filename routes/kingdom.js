@@ -12,6 +12,9 @@ router.get('/', function(req, res) {
     })
     // res.send(dataKingdom)
   })
+  .catch(err =>{
+    res.semd(err)
+  })
 })
 
 //=============kingdom details===========
@@ -45,7 +48,7 @@ router.get('/:id', function(req, res) {
     res.send(dataDistrict)
   })
   .catch(err =>{
-    res.send('err',err)
+    res.send('err')
   })
 })
 
