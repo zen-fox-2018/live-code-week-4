@@ -1,7 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const Model = require('../models')
-// const helpers =
+const districtCheck = require('../helpers/districtCheck')
+const troopsCheck = require('../helpers/troopsCheck')
 
 router.get('/', (req, res) => {
     Model.Kingdom.findAll()
@@ -17,21 +18,23 @@ router.get('/', (req, res) => {
 
 router.get('/:kingdomId', (req, res) => {
     Model.Kingdom.findAll({
-        include: [{model: Soldier}]
-        }, 
-        {where: 
-            {KingdomId: req.params.kingdomId
-        }
+        include: [{
+            model: District
+        }]
     })
     .then(data => {
         res.send(data)
     })
+    // let kingdomDetail = null;
     // Model.Kingdom.findByPk(req.params.kingdomId)
     // .then(kingdomDetail => {
-    //     res.send(kingdomDetail)
-        // res.render('./kingdomDetail', {
-        //     kingdomDetail: kingdomDetail
-        // })
+    //     // res.send(kingdomDetails)
+    //     res.render('./kingdomDetail', {
+    //         kingdomDetail: kingdomDetail,
+    //         districtCheck: districtCheck,
+    //         troopsCheck: troopsCheck
+    //         // totalTroops: Model.Kingdom.jumlahPasukan()
+    //     })
     // })
     .catch(err => {
         res.send(err)

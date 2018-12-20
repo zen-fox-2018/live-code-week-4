@@ -1,7 +1,15 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Soldier = sequelize.define('Soldier', {
-    name: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      validate: {
+        len: {
+          args: [3, 10],
+          msg: `Name must between 3 and 10 characters`
+        }
+      }
+    },
     attack: DataTypes.STRING,
     KingdomId: DataTypes.INTEGER
   }, {});

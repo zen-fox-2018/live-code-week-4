@@ -5,19 +5,21 @@
 </head>
 <body>
     <h2> <%= kingdomDetail.kingdomName %> </h2>
-    <% if (kingdomDetail.DistrictId === null) { %>
-    <h3>Unassigned</h3>
-    <% } else { %>
-    <h3>NAMA DISTRICTNYA</h3>
-    <% } %>
-    <% if (kingdomDetail.DistrictId === null) { %>
-    <h3>Unassigned</h3>
-    <% } else { %>
-    <h3>NAMA DISTRICTNYA</h3>
-    <% } %>
+    <h3> <%= districtCheck(kingdomDetail.DistrictId) %> </h3>
 
-    <form action="POST" >
+    <h3>Add Soldier</h3>
+    <form action="/soldiers/ <%= kingdomDetail.id %> " method="POST">
+        <label for="">Name:</label>
+        <input type="text" placeholder="Soldier Name">
+        <label for="">Attack:</label>
+        <input type="text" placeholder="Soldier Attack">
+        <button type="submit" value="Submit">Submit</button>
+    </form>
 
+    <h3>District</h3>
+    <form action="/kingdoms/ <%= kingdomDetail.id %> " method="POST">
+        <input type="radio" name="gender" value="male"> Male<br>
+        <button type="submit" value="Submit">Submit</button>
     </form>
 </body>
 </html>
