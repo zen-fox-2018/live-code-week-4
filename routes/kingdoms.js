@@ -38,7 +38,10 @@ router.post('/soldier/:kingdomId',function(req,res) {
     }
     Model.Soldier.create(obj)
     .then(soldier => {
-        res.send(soldier)
+        res.redirect('/kingdoms/')
+    })
+    .catch(err => {
+        res.send(err)
     })
 })
 
