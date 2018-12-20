@@ -2,24 +2,24 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Kingdom <%= dataKingdom.kingdomName %></title>
+    <title>Kingdom <%= dataSoldier.kingdomName %></title>
   </head>
   <body>
-    <h1 align="center"> <%= dataKingdom.kingdomName %></h1>
+    <h1 align="center"> <%= dataSoldier.kingdomName %></h1>
     <table align="center">
       <tr>
         <td>
           <!-- kingdom detail -->
           <table>
             <tr>
-              <td><%= dataKingdom.kingdomName%></td>
+              <td><%= dataSoldier.kingdomName%></td>
             </tr>
             <tr>
               <td>unassigned</td>
             </tr>
             <tr>
               <td>total soldier :
-              <%= dataKingdom.Soldiers.length%></td>
+              <%= dataSoldier.Soldiers.length%></td>
             </tr>
           </table>
         </td>
@@ -49,9 +49,19 @@
             </tr>
           </form>
           </table>
-
         </td>
-
+        <table>
+          <form action="index.html" method="post">
+            <tr>
+              <% dataDistrict.forEach(item => { %>
+                <input type="radio" value="<%= item.id%>"> <%= dataDistrict.districtName %>
+              <% })%>
+            </tr>
+            <tr>
+              <button type="submit" name="button"></button>
+            </tr>
+          </form>
+        </table>
       </tr>
     </table>
   </body>

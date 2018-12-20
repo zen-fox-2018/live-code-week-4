@@ -17,7 +17,7 @@ router.get('/', function(req, res) {
 //=============kingdom details===========
 router.get('/:id', function(req, res) {
   let paramsId = req.params.id;
-  let dataKingdom = null;
+  let dataSoldier = null;
   Model.Kingdom.findOne({
     where : {
       id : paramsId
@@ -26,12 +26,23 @@ router.get('/:id', function(req, res) {
       model : Model.Soldier
     }]
   })
-  .then(dataKingdom =>{
-    dataKingdom = dataKingdom;
-    res.render('kingdomdetail.ejs',{
-      dataKingdom : dataKingdom
+  .then(dataSoldier =>{
+    dataSoldier = dataKingdom;
+    return Model.Kingdom.findOne({
+      where : {
+        id : paramsId
+      },
+      include : [{
+        model : Model.District
+      }]
     })
-    // res.send(dataKingdom)
+  })
+  .then (dataDistrict => {
+    // res.render('kingdomdetail.ejs',{
+    //   dataDistrict : dataDistrict,
+    //   dataSoldier : dataSoldier
+    // })
+    res.send(dataDistrict)
   })
   .catch(err =>{
     res.send('err',err)
