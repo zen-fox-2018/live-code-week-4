@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>kingdom name</th>
+            <th>soldier</th>
+            <th>distric</th>
+        </tr>
+        <tr>
+            <td> <%= Kingdom.kingdomName %></td>
+            <% if(Kingdom.Soldiers.length == null)  { %>
+                <td> unassign </td>
+            <% } else { %>
+            <% Kingdom.Soldiers.forEach( soldier => { %>
+                <td> <%= soldier.name %> </td>
+            <% })} %>
+            <% if(district.District == null)  { %>
+                <td> unassign </td>
+            <% } else { %>
+            <% distric.District.forEach( area => { %>
+                <td> <%=area %> </td>
+            <% })} %>
+            
+            <td></td>
+        </tr>
+    </table>
+    <h3>create soldier</h3>
+    <form action="/kingdoms/soldier/<%=Kingdom.id%>" method="POST">
+        <label>soldier name</label>
+        <input name="name">
+        <label>attack</label>
+        <input name="attack">
+        <button type="submit">create</button>
+    </form>
+    <h3>ambil distric</h3>
+    <form action="">
+            <input type="radio" name="District" value="1"> Prontera<br>
+            <input type="radio" name="District" value="2"> Payon<br>
+            <input type="radio" name="District" value="3"> Morroc<br>
+            <input type="radio" name="District" value="4"> Izlude<br>
+            <input type="radio" name="District" value="5"> Geffen<br>
+            <input type="radio" name="District" value="6"> Juno<br>
+            <button type="submit">ambil</button>
+          
+        </form>
+    
+</body>
+</html>
