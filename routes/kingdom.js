@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const db = require('../models');
+const kingdomName = require('../helpers/kingdomName');
 
 router.get('/', (req, res) => {
 
@@ -18,19 +19,19 @@ router.get('/:id', (req, res) => {
   let tmp = [];
 
   db.Kingdom.findOne({
+    include: [{
+      model: db.District,
+    }],
     where: {
       id: req.params.id
     }
   })
 
     .then((result) => {
-      tmp = result;
-      return db.District.findAll()
+      // res.send(result)
+      res.render('dataKingdom', { detailKingdoms: result, kName: kingdomName });
     })
-    .then(data => {
-      res.send(data)
-      // res.render('dataKingdom', { detailKingdoms: result }, { district: data });
-    })
+
     .catch((err) => {
       res.send(err);
     });
@@ -46,6 +47,13 @@ router.post('/:id', (req, res) => {
       KingdomId: req.params.id
     }
   )
+  
+  .then((result) => {
+    res.redirect('/kingdoms');
+  })
+  .catch((err) => {
+    res.send(err);
+  });
 });
 
 
