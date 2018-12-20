@@ -37,8 +37,5 @@ routes.get('/:kingdomId', (req, res) => {
     })
 })
 
-routes.post(':/kingdomId', (req, res) => {
-
-})
 
 module.exports = routes;

@@ -6,6 +6,7 @@ routes.get('/', (req, res) => {
 })
 
 routes.post('/:kingdomId', (req, res) => {
+  let id = req.params.kingdomId
   let obj = {
     name: req.body.name,
     attack: req.body.attack,
@@ -13,7 +14,7 @@ routes.post('/:kingdomId', (req, res) => {
   }
   Model.Soldier.create(obj)
   .then(data => {
-    res.redirect('/kingdoms')
+    res.redirect(`/kingdoms/${id}`)
   })
   .catch(err => {
     res.send(err)
