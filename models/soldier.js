@@ -33,5 +33,6 @@ module.exports = (sequelize, DataTypes) => {
     // associations can be defined here
     Soldier.belongsTo(models.Kingdom)
   };
+  
   return Soldier;
 };

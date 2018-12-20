@@ -26,8 +26,14 @@
           </form>
       </td>
       <td>
-        <form action="/kingdoms/<% data.id%>">
-          <input type="radio" name="district"> 
+        <form action="/kingdoms/<%= data.id%>" method="POST">
+          <input type="radio" name="name" value="Prontera"><label for="district">Prontera</label><br>
+          <input type="radio" name="name" value="Payon"><label for="district">Payon</label><br>
+          <input type="radio" name="name" value="Morroc"><label for="district">Morroc</label><br>
+          <input type="radio" name="name" value="Izlude"><label for="district">Izlude</label><br>
+          <input type="radio" name="name" value="Geffen"><label for="district">Geffen</label><br>
+          <input type="radio" name="name" value="Juno"><label for="district">Juno</label><br>
+          <button type="submit">Button</button>
         </form>
       </td>
     </tr>
