@@ -10,8 +10,19 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
-    attack: DataTypes.STRING,
-    KingdomId: DataTypes.INTEGER
+    KingdomId: DataTypes.INTEGER,
+    attack: {
+      type: DataTypes.INTEGER,
+      validate: {
+        min: {
+          args: 100,
+          msg: `Minimum input attack is 100`
+        }, max: {
+            args: 1000,
+            msg: `Maximum input attack is 1000`
+        }
+      }
+    }
   }, {});
   Soldier.associate = function(models) {
     // associations can be defined here

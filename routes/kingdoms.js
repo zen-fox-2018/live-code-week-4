@@ -17,32 +17,33 @@ router.get('/', (req, res) => {
 })
 
 router.get('/:kingdomId', (req, res) => {
-    Model.Kingdom.findAll({
-        include: [{
-            model: District
-        }]
+    let kingdom = null;
+    Model.Kingdom.findByPk(req.params.kingdomId)
+    .then(kingdomDetail => {
+        // res.send(kingdomDetail)
+        kingdom = kingdomDetail
+        return Model.District.findAll()
     })
-    .then(data => {
-        res.send(data)
+    .then(allDistricts => {
+        // res.send(allDistricts)
+        let err = req.query.error
+        res.render('./kingdomDetail', {
+            kingdomDetail: kingdom,
+            districtCheck: districtCheck,
+            troopsCheck: troopsCheck,
+            allDistricts: allDistricts,
+            err: err,
+            totalTroops: Model.Kingdom.jumlahPasukan()
+        })
     })
-    // let kingdomDetail = null;
-    // Model.Kingdom.findByPk(req.params.kingdomId)
-    // .then(kingdomDetail => {
-    //     // res.send(kingdomDetails)
-    //     res.render('./kingdomDetail', {
-    //         kingdomDetail: kingdomDetail,
-    //         districtCheck: districtCheck,
-    //         troopsCheck: troopsCheck
-    //         // totalTroops: Model.Kingdom.jumlahPasukan()
-    //     })
-    // })
     .catch(err => {
         res.send(err)
     })
 })
 
-// router.post(':kingdomId', (req, res) => {
-// })
+router.post(':kingdomId', (req, res) => {
+
+})
 
 
 module.exports = router
