@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td,
+    th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  </style>
+  <title>Kingdoms</title>
+</head>
+
+<body>
+
+  <div style="text-align: center;">
+    <h2>
+      <%= detailKingdoms.kingdomName %>
+    </h2>
+
+    <% if (detailKingdoms.District == null) { %>
+    <h3>
+      District: Unasssigned
+    </h3>
+    <% } else { %>
+    <h3>
+      District:
+      <%= detailKingdoms.District.districtName %>
+    </h3>
+
+    <% } %>
+
+    <p>Total Soldier :
+      <%= detailKingdoms.Soldiers.length %>
+    </p>
+
+  </div>
+
+
+
+
+  <h2 style="text-align: center;">Add Soldier</h2>
+
+  <div style="text-align: center;">
+    <form action="" method="post">
+      Name:
+      <input type="text" name="name" placeholder="Soldier name">
+      Attack:
+      <input type="text" name="attack" placeholder="Soldier attack">
+      <br><br>
+      <input type="submit" value="Add Soldier">
+    </form>
+  </div>
+
+
+</body>
+
+</html>
