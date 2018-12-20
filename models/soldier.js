@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
           })
 
           .catch((err) => {
-            
+
           })
       }
     }
@@ -52,6 +52,24 @@ module.exports = (sequelize, DataTypes) => {
 
       .then((soldiers) => {
         resolve (soldiers.length)
+      })
+
+      .catch((err) => {
+        reject(err)
+      })
+    })
+  }
+
+  Soldier.getAttack = (id) => {
+    return new Promise((resolve, reject) => {
+      Soldier.sum('attack', {
+        where: {
+          KingdomId: id
+        }
+      })
+
+      .then((attacks) => {
+        resolve (attacks)
       })
 
       .catch((err) => {
