@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+<table>
+  <tr>
+    <th>Kingdom's Name</th>
+    <th>Details</th>
+  </tr>
+  <%data.forEach(function(kingdom) {%>
+    <tr>
+      <%if (kingdom.DistrictId !== null) {%>
+        <td style="color:yellow"><%=kingdom.kingdomName%></td>
+      <%} else { %>
+        <td style><%=kingdom.kingdomName%></td>
+      <%}%>
+      <td><a href="/kingdoms/<%=kingdom.id%>">Details</a></td>
+    </tr>
+  <%})%>
+</table>
+  </body>
+</html>
