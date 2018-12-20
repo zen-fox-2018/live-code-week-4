@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const kingdoms = require('./routes/kingdomRoutes');
+const soldiers = require('./routes/soldierRoutes')
 let port = 3000
 
 app.set('view engine', 'ejs')
@@ -12,7 +13,7 @@ app.get('/', function( req, res ) {
 })
 
 app.use('/kingdoms', kingdoms)
-
+app.use('/soldiers', soldiers)
 
 
 app.listen(port, function() {

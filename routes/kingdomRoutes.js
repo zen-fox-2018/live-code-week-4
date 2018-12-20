@@ -8,6 +8,9 @@ router.get('/', function( req, res ) {
       // res.send(allKingdom)
       res.render('kingdomViews.ejs', { data : allKingdom })
     })
+    .catch( err => {
+      res.send(err)
+    })
 })
 
 router.get('/:kingdomId', function( req, res ) {
@@ -18,7 +21,11 @@ router.get('/:kingdomId', function( req, res ) {
     where : { id : req.params.kingdomId } 
   } )
     .then( kingdom => {
-      res.send(kingdom)
+      let pasukan = kingdom.pasukan()
+      res.render('kingdomDetails.ejs', { data : kingdom , pasukan : pasukan})
+    })
+    .catch( err => {
+      res.send(err)
     })
 })
 

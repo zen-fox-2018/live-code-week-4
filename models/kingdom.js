@@ -17,5 +17,13 @@ module.exports = (sequelize, DataTypes) => {
     Kingdom.hasMany(models.Soldier)
     Kingdom.belongsTo(models.District)
   };
+
+  Kingdom.prototype.pasukan = function () {
+    let total = 0
+    this.Soldiers.forEach( a => {
+      total++
+    })
+    return total + ' pasukan'
+  }
   return Kingdom;
 };
