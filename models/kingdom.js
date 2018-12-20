@@ -5,13 +5,17 @@ module.exports = (sequelize, DataTypes) => {
     nameOfKing: DataTypes.STRING,
     DistrictId: DataTypes.INTEGER,
     population: DataTypes.INTEGER
-  }, {});
+  }, {
+
+
+  });
 
   Kingdom.associate = function(models) {
     Kingdom.hasMany(models.Soldier, {
       foreignKey: "KingdomId"
     })
   };
+
 
   Kingdom.prototype.getDistrict = function(value) {
     if (!this.DistrictId) {
@@ -27,5 +31,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
 
+  
   return Kingdom;
 };
+

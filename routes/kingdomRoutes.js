@@ -20,7 +20,7 @@ routes.get('/:kingdomId', (req, res) => {
     // include: { model: Model.District },
     where: { id: req.params.kingdomId },
   })
-  // console.log(Model.Kingdom.getDistrict())
+  // Model.Soldier.countAll(req.params.kingdomId);
     .then(kingdom => {
       data = kingdom
       return Model.District.findAll()
