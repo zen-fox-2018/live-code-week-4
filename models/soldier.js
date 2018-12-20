@@ -39,5 +39,11 @@ module.exports = (sequelize, DataTypes) => {
   Soldier.associate = function(models) {
     Soldier.belongsTo(models.Kingdom, { foreignKey: 'KingdomId' })
   };
+
+  Soldier.getData() = function(id) {
+    return new Promise ((resolve, reject) => {
+      Soldier.findAll({})
+    })
+  }
   return Soldier;
 };

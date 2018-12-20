@@ -8,7 +8,7 @@ routes.get('/', (req, res) => {
             res.render('kingdoms.ejs', { kingdoms: kingdoms })
         })
         .catch(err => {
-            res.send(err)
+            res.redirect(`/kingdoms/${req.params.kingdomId}?err=${err}`)
         })
 })
 
@@ -27,13 +27,13 @@ routes.get('/:kingdomId', (req, res) => {
             res.render('kingdomDetail.ejs', { districts, kingdom, err: req.query.err })
         })
         .catch(err => {
-            res.send(err)
+            res.redirect(`/kingdoms/${req.params.kingdomId}?err=${err}`)
         })
     // res.render('kingdomDetail.ejs')
 })
 
 routes.post('/:kingdomId', (req, res) => {
-    Kingdom.getEnemy()
+    Kingdom.getEnemy(req.body.id)
         .then(enemy => {
             if (!enemy) {
                 let obj = {
@@ -51,7 +51,20 @@ routes.post('/:kingdomId', (req, res) => {
                     include: {model: Soldier}
                 })
                     .then(kingdom => {
-
+                        kingdom.Soldiers.forEach(soldier => {
+                            atck += soldier.attack
+                        });
+                        if (atck < enemyAtck) {
+                            res.redirect(`/kingdoms/${req.params.kingdomId}?err=Failed to get district`)
+                        } else {
+                            let obj = {
+                                DistrictId: req.body.id
+                            }
+                            return Kingdom.update(obj, {where: {id: req.params.kingdomId}})
+                        }
+                    })
+                    .catch(err => {
+                        res.redirect(`/kingdoms/${req.params.kingdomId}?err=${err}`)
                     })
             }
         })

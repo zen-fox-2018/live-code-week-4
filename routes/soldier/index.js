@@ -1,6 +1,17 @@
 const routes = require('express').Router()
 const { Kingdom, Soldier, District } = require('../../models')
 
+routes.get('/', (req, res) => {
+    Soldier.getData()
+        .then(soldiers => {
+            res.send(soldiers)
+            // res.render('soldiers.ejs', { soldiers })
+        })
+        .catch(err => {
+            res.redirect(`/soldiers?err=${err.errors[0].message}`)
+        })
+})
+
 routes.post('/:kingdomId', (req, res) => {
     let obj = {
         name: req.body.name,
