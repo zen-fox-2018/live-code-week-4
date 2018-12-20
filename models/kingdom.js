@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Kingdom.associate = function(models) {
     Kingdom.belongsTo(models.District, {foreignKey : 'DistrictId'});
+    Kingdom.hasMany(models.Soldier, {foreignKey : 'kingdomId'});
   };
   return Kingdom;
 };

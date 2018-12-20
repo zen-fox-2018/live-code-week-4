@@ -3,7 +3,7 @@ const kingdomRoutes = require('./kingdoms')
 const soldierRoutes = require('./soldiers')
 
 routes.get('/', function(req, res) {
-  res.render('zen_live_code_week_4')
+  res.render('home')
 })
 
 routes.use('/kingdoms', kingdomRoutes)

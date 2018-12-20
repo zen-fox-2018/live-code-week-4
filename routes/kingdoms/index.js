@@ -1,5 +1,6 @@
 const routes = require('express').Router()
 const {Kingdom, Soldier, District} = require('../../models')
+const getDistrictName = require('../../helpers/getDistrictName')
 
 routes.get('/', function (req, res) {
   Kingdom.findAll()
@@ -12,13 +13,14 @@ routes.get('/', function (req, res) {
 })
 
 routes.get('/:id', function (req, res) {
-  Kingdom.findOne({where: {id: req.params.id}, include: [{model: District}]})
+  Kingdom.findOne({where: {id: req.params.id}, include: [{model: District}, {model: Soldier}]})
     .then(function (kingdom) {
-      res.send(kingdom)
+      res.render('kingdom-detail', {data: kingdom, getDistrictName: getDistrictName})
     })
     .catch(function (err) {
       res.send(err.message)
     })
 })
+
 
 module.exports = routes

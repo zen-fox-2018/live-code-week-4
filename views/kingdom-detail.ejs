@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title><%=data.kingdomName%></title>
+  </head>
+  <body>
+    <h1><%=data.kingdomName%></h1>
+    <h4><%=getDistrictName(data.District)%></h4>
+    <h4>totalSoldier: <%=data.Soldiers.length%> pasukan</h4>
+    <br><br>
+    <h1>Add Soldier</h1>
+    <form action="/soldiers/<%=data.id%>" method="POST">
+      Name:<br>
+      <input type="text" name="name">
+      <br>
+      Attack:<br>
+      <input type="number" name="attack">
+      <br><br>
+      <input type="submit" value="Add Soldier">
+    </form>
+    <br><br>
+    <h1>Get District</h1>
+    <form>
+     <input type="radio" name="gender" value="male"> Male<br>
+    </form>
+  </body>
+</html>

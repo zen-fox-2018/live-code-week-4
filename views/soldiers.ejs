@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Soldiers</title>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th>No</th>
+        <th>Kingdom's Name</th>
+        <th>Total Soldier</th>
+        <th>Total Attack</th>
+      </tr>
+      <%data.forEach(function(kingdom) {%>
+        <tr>
+          <td><%=kingdom.id%></td>
+          <td><%=kingdom.kingdomName%></td>
+          <td><%=kingdom.Soldiers.length%></td>
+          <td><%=totalAttack(kingdom.Soldiers)%></td>
+        </tr>
+      <%})%>
+    </table>
+  </body>
+</html>
