@@ -23,6 +23,8 @@ app.get('/kingdoms', (req, res)=> {
 })
 
 app.get('/kingdoms/:kingdomId', (req, res)=> {
+    let info = req.query.info
+    let err = req.query.err
     let tempKingdom = {}
    let kingdomId = req.params.kingdomId
    Model.Kingdom.findByPk(kingdomId, {include:[
@@ -35,14 +37,45 @@ app.get('/kingdoms/:kingdomId', (req, res)=> {
     })
     .then(Districts => {
         // res.send(tempKingdom)
-        res.render('detailkingdom', {Kingdom:tempKingdom, checkDistrict, Districts, checkedRadioButtonDistrict})
+        res.render('detailkingdom', {Kingdom:tempKingdom, checkDistrict, Districts, checkedRadioButtonDistrict, info, err})
     })
     .catch(err => res.send(err))
 })
 
+app.post('/soldiers/:kingdomId', (req, res)=> {
+    let kingdomId = req.params.kingdomId
+    let objSoldier = {
+        name: req.body.name,
+        attack : req.body.attack,
+        KingdomId: kingdomId
+    }
+    Model.Soldier.create(objSoldier)
+    .then(()=> {
+        res.redirect(`/kingdoms/${kingdomId}?info=Success add soldier`)
+    })
+    .catch(err=> res.redirect(`/kingdoms/${kingdomId}?err=${err}`))
+})
 
+app.post('/kingdoms/:kingdomId', (req, res)=> {
+   let kingdomId =  req.params.kingdomId 
+   let districId = req.body.DistrictId 
+    let objUpdate = {
+        DistrictId: districId
+    }
+    Model.Kingdom.update(objUpdate, {where : {
+        id:kingdomId
+    } , individualHooks : true})
+    .then(()=> {
+        res.redirect(`/kingdoms/${kingdomId}?info=Success get District`)
+    })
+    .catch(err=> {
+        res.redirect(`/kingdoms/${kingdomId}?err=${err}`)
+    })
+})
 
-
+app.get('/soldiers', (req, res)=> {
+    
+})
 
 
 

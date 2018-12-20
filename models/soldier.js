@@ -29,10 +29,14 @@ module.exports = (sequelize, DataTypes) => {
           {model: sequelize.models.Soldier}
         ]})
         .then(dataKingdom => {
-
+          if(dataKingdom.Soldiers.length >= 20) {
+            reject(`Kingdom Has Already full soldier`)
+          } else {
+            resolve()
+          }
         })
       })
-      .catch(err => resolve(err))
+      .catch(err => reject(err))
       
     }
   }});
