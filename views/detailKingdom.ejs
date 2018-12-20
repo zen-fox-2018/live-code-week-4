@@ -1,0 +1,51 @@
+<%- include ./partial/header.ejs %>
+
+<%  if (msg){%>
+    <div class="alert alert-info">
+        <strong>Info!</strong> <%= msg %>
+    </div>
+<% } %>
+
+<h1>
+    <%=  data.kingdomName %>
+    <%= dis %>
+</h1>
+<h2>
+    total Pasukan : <%= data.Soldiers.length %> pasukan
+</h2>
+
+<div class="container">
+        <form action="/soldiers/add/<%= data.id %>" method="POST">
+          <div class="form-group">
+            <label >Name :</label>
+            <input type="text" class="form-control"  placeholder="Enter name" name="name">
+          </div>
+          <div class="form-group">
+            <label>Attack :</label>
+            <input type="number" class="form-control" placeholder="Enter attack" name="attack">
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+</div>
+
+
+<div class="container">
+        <form action="/kingdoms/<%= data.id %>" method="post" >
+            <% for (let i = 0 ; i < dataDis.length ; i++) { %>
+                <% if (data.DistrictId == dataDis[i].id) { %>
+                    <div class="radio">
+                        <label><input type="radio" name="DistrictId" value="<%= dataDis[i].id %>" checked > <%= dataDis[i].districtName %></label>
+                    </div>
+                <% }  else { %>
+                    <div class="radio">
+                      <label><input type="radio" name="DistrictId" value="<%= dataDis[i].id %>" > <%= dataDis[i].districtName %></label>
+                    </div>
+                    <% } %>
+                    <% }%>
+                    <% if(data.DistrictId == null) { %>
+
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    <%}%>
+        </form>
+      </div>
+<%- include ./partial/footer.ejs %>
