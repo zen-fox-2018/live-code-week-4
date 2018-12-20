@@ -6,6 +6,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   District.associate = function(models) {
     // associations can be defined here
+    District.belongsTo(models.Kingdom, {
+      foreignKey : 'DistrictId'
+    })
   };
   return District;
 };

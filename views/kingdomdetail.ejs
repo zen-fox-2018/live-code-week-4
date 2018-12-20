@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Kingdom <%= dataKingdom.kingdomName %></title>
+  </head>
+  <body>
+    <h1 align="center"> <%= dataKingdom.kingdomName %></h1>
+    <table align="center">
+      <tr>
+        <td>
+          <!-- kingdom detail -->
+          <table>
+            <tr>
+              <td><%= dataKingdom.kingdomName%></td>
+            </tr>
+            <tr>
+              <td>unassigned</td>
+            </tr>
+            <tr>
+              <td>total soldier :
+              <%= dataKingdom.Soldiers.length%></td>
+            </tr>
+          </table>
+        </td>
+        <td>
+          <table>
+            <tr>
+              <td colspan="2"> Add Soldier </td>
+            </tr>
+            <tr>
+              <td> name </td>
+              <td> attack </td>
+            </tr>
+            <form method="post">
+            <tr>
+              <td>
+                <input type="text" name="name" value="">
+              </td>
+              <td>
+                <input type="text" name="attack" value="">
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>
+                <button type="submit"> add Soldier </button>
+              </td>
+            </tr>
+          </form>
+          </table>
+
+        </td>
+
+      </tr>
+    </table>
+  </body>
+</html>

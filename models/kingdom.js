@@ -7,6 +7,12 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Kingdom.associate = function(models) {
     // associations can be defined here
+    // Kingdom.belongsTo(models.District, {
+    //   foreignKey : 'DistrictId'
+    // }),
+    Kingdom.hasMany(models.Soldier , {
+      foreignKey : 'KingdomId'
+    })
   };
   return Kingdom;
 };
