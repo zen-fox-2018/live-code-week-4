@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>All Kingdom</title>
+</head>
+<body>
+  <div class="container">
+    <% data.forEach( a=> { %>
+      <h1><%= a.kingdomName %></h1>
+      <p><a href="/kingdoms/<%= a.id %>">details</a></p>
+    <% }) %>
+  </div>
+</body>
+</html>
