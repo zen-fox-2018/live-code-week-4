@@ -1,0 +1,38 @@
+<%- include partials/header.ejs %>
+<%- include partials/navbar.ejs %>
+<table>
+    <table>
+
+        <tr>
+            <th>Kingdom Name</th>
+            <th>King Name</th>
+            <th>Total Army</th>>
+        </tr>
+        <tr>
+            <td><%= kingdom.kingdomName %></td>
+            <td><%= kingdom.nameOfKing %></td>
+            <td><%= kingdom.nameOfKing %></td>
+        </tr>
+    </table>
+    <h1>Add Soldier</h1>
+    <form action="/soldiers/<%= kingdom.id %>" method="POST">
+        <label for="">Name</label>
+        <input type="text" name="name">
+        <label for="">Attack</label>
+        <input type="number" name="attack">
+        <button>Add Soldier</button>
+    </form>
+
+    <h1>Add District</h1>
+    <form action="/soldiers/<%= kingdom.id %>" method="POST">
+        <div class="radio">
+            <label><input type="radio" name="optradio" checked>kingdom1</label>
+            </div>
+            <div class="radio">
+            <label><input type="radio" name="optradio">kingdom2</label>
+            </div>
+            <div class="radio disabled">
+            <label><input type="radio" name="optradio" disabled>Option 3</label>
+        </div>              
+    </form>
+</table>

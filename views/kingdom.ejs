@@ -1,0 +1,14 @@
+<%- include partials/header.ejs %>
+<%- include partials/navbar.ejs %>
+<table>
+    <tr>
+        <th>Kingdom Name</th>
+        <th>Options</th>>
+    </tr>
+    <% kingdom.forEach((kingdom, i) => { %>
+        <tr>
+            <td><%= kingdom.kingdomName %></td>
+            <td><a href="/kingdoms/<%= kingdom.id %>">Details</a></td>
+        </tr>
+    <% }) %>
+</table>
