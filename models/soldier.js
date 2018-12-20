@@ -10,5 +10,17 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "KingdomId"
     })
   };
+
+  Soldier.countAll = function() {
+    Soldier.count()
+    .then(data => {
+      return data
+    })
+    .catch(err => {
+      throw err
+    }) 
+  }
+
+
   return Soldier;
 };

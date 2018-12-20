@@ -21,5 +21,11 @@ module.exports = {
       return queryInterface.dropTable('users');
     */
   //  return queryInterface.addColumn('Districts', 'population', Sequelize.INTEGER);
+  return queryInterface
+  .addColumn('Districts', 'population', {
+    type: Sequelize.STRING(100),
+    field: 'population',
+    allowNull: false
+  });
   }
 };

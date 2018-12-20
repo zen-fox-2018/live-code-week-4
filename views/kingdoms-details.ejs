@@ -41,11 +41,14 @@
     </style>
 <body>
 
-  <h1>NAMA KINGDOM: <%= data.name %></h1>
+  <h2>Nama Kingdom   : <%= data.kingdomName %></h2>
+  <h2>District: </h2>
+  <h2>Total Pasukan : </h2>
+  <br><br>
 
-  <h1>ADD SOLDIER</h1>
+  <h2>ADD SOLDIER</h2>
     <div>
-        <form action="/soldiers/<%=data.id>" method="POST">
+        <form action="/soldiers/<%=data.id %>" method="POST">
           <label for="fname">Name</label>
           <input type="text" id="name" name="name" placeholder="Soldier Name">
       
@@ -56,6 +59,19 @@
         </form>
       </div>
 
+  <br>
+  <h2>ADD DISTRICT</h2>
+      <form action="/kingdoms/<%=data.id %>" method="post">
+
+        <% district.forEach(e => { %>
+          <label class="container">
+              <input type="radio" name="districtId" value="<%= e.id %>"> <%=e.districtName %>  <br> 
+          </label>
+        <% }) %>
+      
+        <button type="submit" class="btn btn-outline-primary">Get District</button>
+  </form>
+  
 
 </body>
 </html>
