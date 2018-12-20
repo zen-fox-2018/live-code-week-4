@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Kingdom</title>
+</head>
+<body>
+  <table border="2">
+    <tr>
+      <td>
+        <h2>Kingdom of <%= data.kingdomName %></h2><br>
+        <h3>Total Soldiers: <%= pasukan%></h3>
+      </td>
+      <td>
+        <form action="/soldiers/<%= data.id%>" method="POST">
+            <h3>Add Pasukan</h3><br>
+            <label for="name">Name</label><br>
+            <input type="text" name="name"><br>
+      
+            <label for="attack">Attack</label><br>
+            <input type="text" name="attack"><br>
+      
+            <button type="submit">Submit</button>
+          </form>
+      </td>
+      <td>
+        <form action="/kingdoms/<%= data.id%>" method="POST">
+          <input type="radio" name="name" value="Prontera"><label for="district">Prontera</label><br>
+          <input type="radio" name="name" value="Payon"><label for="district">Payon</label><br>
+          <input type="radio" name="name" value="Morroc"><label for="district">Morroc</label><br>
+          <input type="radio" name="name" value="Izlude"><label for="district">Izlude</label><br>
+          <input type="radio" name="name" value="Geffen"><label for="district">Geffen</label><br>
+          <input type="radio" name="name" value="Juno"><label for="district">Juno</label><br>
+          <button type="submit">Button</button>
+        </form>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
