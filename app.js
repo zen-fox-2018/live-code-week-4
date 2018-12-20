@@ -74,7 +74,12 @@ app.post('/kingdoms/:kingdomId', (req, res)=> {
 })
 
 app.get('/soldiers', (req, res)=> {
-    
+    // Model.Kingdom.findAll({attributes: ['Kingdoms.id',
+    //                                     'Kingdoms.kingdomName',
+    //                                     [sequelize.fn('COUNT', sequelize.col('Soldiers.id')), 'TotalSoldier' ,
+    //                                     [sequelize.fn()]
+
+    //                                     ]]})
 })
 
 
