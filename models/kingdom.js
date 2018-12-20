@@ -1,4 +1,5 @@
 'use strict';
+const getDistrict = require('../helpers/generateDistrict')
 module.exports = (sequelize, DataTypes) => {
   const Kingdom = sequelize.define('Kingdom', {
     kingdomName: DataTypes.STRING,
@@ -15,5 +16,16 @@ module.exports = (sequelize, DataTypes) => {
     Kingdom.belongsTo(models.District)
     // associations can be defined here
   };
+
+  Kingdom.prototype.getSoldier = function () {
+    if (Kingdom.Soldier) {
+      return kingdom.Soldiers.length -1 + " " + "pasukan"
+    } else {
+      return "0 pasukan"
+    }
+  }
+  Kingdom.prototype.getDistrict = function () {
+    return getDistrict()
+  }
   return Kingdom;
 };
