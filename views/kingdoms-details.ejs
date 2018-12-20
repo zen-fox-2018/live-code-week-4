@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <script src="main.js"></script>
+</head>
+<body>
+  <table>
+    <tr>
+      <th>Detail</th>
+    </tr>
+    <tr>
+      <td><%= dataKingdom.kingdomName %></td>
+    </tr>
+    <tr>
+      <td>total soldiers: <%= jumlahPasukan %> pasukan </td>
+    </tr>
+    <tr>
+      <td>unassigned</td>
+    </tr>
+  </table>
+
+  <form action="/kingdoms/<%=dataKingdom.id%>" method="POST">
+    <h3>ADD SOLDIER</h3>
+    Name:<br>
+    <input type="text" name="name"><br><br>
+    attack:<br>
+    <input type="text" name="attack"><br><br>
+    <input type="submit" value="Add Soldier">
+  </form>
+
+  <form action = "/kingdoms/<%=dataKingdom.id%>" method="POST">
+      <h3>DISTRICT</h3>
+     <% dataDistrict.forEach(e => { %>
+        <input type="radio" name="districtName" value="<%= e.id %>"><%= e.districtName%> <br>
+      <% }) %>
+      <input type="submit" value="get district">
+  </form>
+
+</body>
+</html>
