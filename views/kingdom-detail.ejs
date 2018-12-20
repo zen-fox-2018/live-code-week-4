@@ -21,8 +21,11 @@
     </form>
     <br><br>
     <h1>Get District</h1>
-    <form>
-     <input type="radio" name="gender" value="male"> Male<br>
+    <form action="/kingdoms/<%=data.id%>", method="POST">
+      <%districts.forEach(function(district) {%>
+        <input type="radio" name="DistrictId" value="<%=district.id%>"><%=district.districtName%><br>
+      <%})%>
+      <input type="submit" value="Get District">
     </form>
   </body>
 </html>
