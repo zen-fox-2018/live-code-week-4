@@ -1,13 +1,36 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Soldier = sequelize.define('Soldier', {
-    name: DataTypes.STRING,
-    attack: DataTypes.INTEGER,
+    name:{
+      type:DataTypes.STRING,
+      validates:{
+        len : [3,10]
+      }
+    } ,
+    attack: {
+      type:DataTypes.INTEGER,
+      validates:{
+        min: 100,
+        max: 1000,
+      }
+    },
     KingdomId: DataTypes.INTEGER
-  }, {});
+  },
+   {});
   Soldier.associate = function(models) {
     // associations can be defined here
     Soldier.belongsTo(models.Kingdom)
   };
+
+  Soldier.count = function(KingdomId){
+    this.findAll({where: 
+      {KingdomId:KingdomId}
+    })
+    .then ( dataSoldier =>{
+      return dataSoldier.length
+    }).catch(err =>{
+      return err
+    })
+  }
   return Soldier;
 };
