@@ -29,7 +29,6 @@ route.get(`/:id`, (req, res) => {
         .then((result) => {
             Model.District.findAll()
                 .then((district) => {
-                    
                     res.render(`./kingdom/detail.ejs`, {
                         data: result,
                         getDistrict: getDistrict,
