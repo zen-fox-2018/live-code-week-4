@@ -1,7 +1,7 @@
 const routes = require('express').Router()
 const { Kingdom, Soldier, District } = require('../../models')
 
-routes.get('/kingdoms', (req, res) => {
+routes.get('/', (req, res) => {
     Kingdom.findAll()
         .then(kingdoms => {
             // res.send(kingdoms)
@@ -13,9 +13,18 @@ routes.get('/kingdoms', (req, res) => {
 })
 
 routes.get('/:kingdomId', (req, res) => {
-    Kingdom.findOne({where: {id: req.params/kingdomId}})
-        .then(kingdom => {
-            res.send(kingdom)
+    let kingdom = []
+    Kingdom.findOne({
+        where: {id: req.params.kingdomId},
+        include: {model: Soldier}
+    })
+        .then(dataKingdom => {
+            kingdom = dataKingdom
+            return District.findAll()
+        })
+        .then(districts => {
+            // res.send(kingdom.getSoldiers())
+            res.render('kingdomDetail.ejs', { districts, kingdom })
         })
         .catch(err => {
             res.send(err)

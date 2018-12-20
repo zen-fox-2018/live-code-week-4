@@ -1,6 +1,6 @@
 const routes = require('express').Router()
 const kingdom = require('./kingdom')
 
-routes.get('/kingdoms', kingdom)
+routes.use('/kingdoms', kingdom)
 
 module.exports = routes

@@ -8,7 +8,26 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Kingdom.associate = function(models) {
     Kingdom.hasMany(models.Soldier, { foreignKey: 'KingdomId' })
-    Kingdom.hasOne(models.District, { foreignKey: 'DistrictId' })
+    Kingdom.belongsTo(models.District, { foreignKey: 'DistrictId' })
   };
+
+  Kingdom.prototype.getSoldiers = function() {
+    return `${this.Soldiers.length} pasukan`  
+  }
+
+  Kingdom.prototype.getDistrict = function() {
+    if (!this.DistrictId) {
+      return 'unnasigned'
+    } else {
+      sequelize.models.District.findByPk(this.DistrictId)
+        .then(name => {
+          return name
+        })
+        .catch(err => {
+          return err
+        })
+    }
+  }
+
   return Kingdom;
 };

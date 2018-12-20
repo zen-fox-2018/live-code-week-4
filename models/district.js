@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     districtName: DataTypes.STRING
   }, {});
   District.associate = function(models) {
-    District.belongsTo(models.Kingdom, { foreignKey: 'DistrictId' })
+    District.hasOne(models.Kingdom, { foreignKey: 'DistrictId' })
   };
   return District;
 };
