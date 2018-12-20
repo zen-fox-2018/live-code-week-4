@@ -34,15 +34,13 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     }
-  }, {
-      hooks: {
-        beforeValidate: (value, option) => {
-          return sequelize.Promise.reject(new Error("I'm afraid I can't let you do that!"));
-        }
-      }
-    });
+  }, {});
   Soldier.associate = function (models) {
     Soldier.belongsTo(models.Kingdom)
   };
+
+  Soldier.beforeValidate((val, option) => {
+    
+  })
   return Soldier;
 };

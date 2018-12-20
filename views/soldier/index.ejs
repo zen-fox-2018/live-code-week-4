@@ -12,32 +12,28 @@
 
 <body>
     <%-include('../partials/navbar.ejs')%>
-
+    <br>
+    <br>
     <div class="container">
-        <br>
-        <br>
         <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Kingdom Name</th>
-                    <th scope="col">Action</th>
-
+                    <th scope="col">Kingdom</th>
+                    <th scope="col">Jml Pasukan</th>
+                    <th scope="col">Attack total</th>
                 </tr>
             </thead>
             <tbody>
-                <%for(let i = 0; i < data.length; i++) {%>
+                <%for(let i = 0; i<data.length; i++) {%>
                 <tr>
-                    <%if(data[i].DistrictId != null) {%>
                     <td>
                         <%=data[i].kingdomName%>
                     </td>
-                    <%} else {%>
-                    <td class="text-warning">
-                        <%=data[i].kingdomName%>
-                    </td>
-                    <%}%>
                     <td>
-                        <a href="/kingdoms/<%=data[i].id%>">Detail</a>
+                        <%=data[i].Soldiers.length%>
+                    </td>
+                    <td>
+                        <%=getAttack(data[i].Soldiers)%>
                     </td>
                 </tr>
                 <%}%>

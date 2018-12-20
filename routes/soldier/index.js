@@ -1,5 +1,6 @@
 const route = require(`express`).Router()
 const Model = require(`../../models`)
+const getAttack = require(`../../helpers/getAttack`)
 
 route.post(`/:id`, (req, res) => {
     Model.Soldier.create({
@@ -14,6 +15,22 @@ route.post(`/:id`, (req, res) => {
     });
 
     // res.send(req.body)
+})
+
+route.get(`/`, (req, res) => {
+    Model.Kingdom.findAll({
+        include: [{model: Model.Soldier}]
+    })
+        .then((result) => {
+          
+        res.render(`./soldier/index.ejs`, {
+            data: result,
+            getAttack: getAttack
+        })
+        
+    }).catch((err) => {
+        
+    });
 })
 
 module.exports = route
