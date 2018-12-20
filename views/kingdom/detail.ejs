@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>KINGDOM DETAIl</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<body>
+    <%-include('../partials/navbar.ejs')%>
+    <br>
+    <br>
+    <div class="container">
+        <h1>
+            <%=data.kingdomName%>
+        </h1>
+        <h3>
+            <%=data.getSoldier(data.Soldiers)%>
+        </h3>
+        <h3>
+            <%=getDistrict(data.DistrictId)%>
+        </h3>
+        <br>
+        <br>
+        <h1>Add Soldier</h1>
+        <%if(err != null) {%>
+        <div class="alert alert-danger" role="alert">
+            <%=err%>
+        </div>
+        <%}%>
+        <form action="/soldiers/<%=data.id%>" method="POST">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Name</label>
+                <input name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    placeholder="Enter name">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Attack</label>
+                <input name="attack" type="number" class="form-control" id="exampleInputPassword1" placeholder="Attack">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+        <br>
+        <br>
+        <h1>District</h1>
+        <%if(err != null) {%>
+            <div class="alert alert-danger" role="alert">
+                <%=err%>
+            </div>
+            <%}%>
+        <form action="/kingdoms/<%=data.id%>" method="POST">
+            <%if(data.DistrictId != null) {%>
+            <%for(let i = 0;i<district.length; i++) {%>
+            <div class="form-check">
+                <input value="<%=district[i].id%>" name="DistrictId" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"
+                    checked disabled>
+                <label class="form-check-label" for="exampleRadios1">
+                    <%=district[i].districtName%>
+                </label>
+            </div>
+            <%}%>
+
+            <%} else {%>
+                <%for(let i = 0;i<district.length; i++) {%>
+                        <div class="form-check">
+                            <input value="<%=district[i].id%>" name="DistrictId" class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1"
+                                checked >
+                            <label class="form-check-label" for="exampleRadios1">
+                                <%=district[i].districtName%>
+                            </label>
+                        </div>
+                        <%}%>
+                <%}%>
+            <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
