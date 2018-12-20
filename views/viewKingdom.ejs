@@ -15,16 +15,16 @@
       <th>Detail</th>
     </tr>
     <tr>
-        <% data.forEach(kingdoms => { %>
-        <tr>
-          <td>
-            <%= kingdoms.kingdomName %>
-          </td>
-          <td>
-            <a href="/kingdoms/<%= kingdoms.id %>">Detail</a>
-          </td>
-        </tr>
-      <% }); %>
+      <% data.forEach(kingdoms => { %>
+    <tr>
+      <td>
+        <%= kingdoms.kingdomName %>
+      </td>
+      <td>
+        <a href="/kingdoms/<%= kingdoms.id %>">Detail</a>
+      </td>
+    </tr>
+    <% }); %>
     </tr>
   </table>
 </body>
