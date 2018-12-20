@@ -6,7 +6,7 @@ app.set('view engine','ejs')
 app.use(express.urlencoded({extended:false}))
 
 app.get('/', function(req, res) {
-  res.send('Hello World')
+  res.send('Romawi Battle')
 })
 
 app.get('/kingdoms', function(req, res) {
@@ -22,10 +22,16 @@ app.get('/kingdoms', function(req, res) {
 app.get('/kingdoms/:kingdomId', function(req, res) {
   Model.Kingdom.findByPk(req.params.id)
   .then(kingdoms =>{
-    res.send(kingdoms.kingdomName) 
+    return  Model.Kingdom.findAll({})
+    // console.log(kingdoms,'rrrrrrrrrrrrrrrrrrr')
+    // res.send(kingdoms)
     // res.render('viewKingdomDetail.ejs',{
     //   data: kingdoms
     // })
+  })
+  .then(detail =>{
+    res.render('viewKingdomDetail.ejs',{data: detail})
+    // res.send(detail)
   })
   .catch(err =>{
     res.send(err)

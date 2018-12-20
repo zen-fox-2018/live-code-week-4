@@ -18,18 +18,15 @@ Install dependencies seperti: express, sequelize, dll. Inisialisasi project kali
 - Districts
   - districtName (string)
   - population (integer)
-  sequelize model:generate --name District --attributes districtName:string,population:integer
 
 - Kingdoms
   - kingdomName (string)
   - nameOfKing (string)
   - DistrictId (integer)
-  sequelize model:generate --name Kingdom --attributes kingdomName:string,nameOfKing:string,DistrictId:integer
 
 - Soldiers
   - name (string)
   - attack (integer)
-  sequelize model:generate --name Soldier --attributes name:string,attack:integer,KingdomId:integer
 
 Relasi untuk table `Kingdoms` dan `Soldiers` adalah satu `Kingdom` dapat memiliki banyak `Soldier`, dan satu `Soldier` hanya boleh dibuat pada satu `Kingdom`. Kamu boleh menambahkan kolom baru untuk memenuhi relasi tersebut dan pikirkan table dan kolom apa yang harus ditambahkan, selain itu **HARUS** mengikuti requirement di atas.
 
