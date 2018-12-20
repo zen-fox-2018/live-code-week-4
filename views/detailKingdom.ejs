@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Live Code Week 4</title>
     <style>
-            table, th, td {
+        table, th, td {
               border: 1px solid black;
               padding: 5px;
             }
@@ -15,9 +16,34 @@
             }
             </style>
 </head>
+
 <body>
-        <h1>Kingdom <%= data.kingdomName %></h1>
-        <h3>Jumlah Pasukan = </h3>
-    
+    <h1>Kingdom
+        <%= data.kingdomName %>
+    </h1>
+    <h3>Jumlah Pasukan = <%= data.Soldiers.length %> </h3>
+    <h3 style="color:red">%%%%%%%%%%%%%%%%%%%</h3>
+    <form action="/soldiers/<%= data.id %>" method="POST">
+        <h2>Add Soldier</h2>
+        Name :<br>
+        <input type="text" name="name" >
+        <br>
+        Attack :<br>
+        <input type="text" name="attack" >
+        <br><br>
+        <input type="submit" value="Add Soldier">
+    </form>
+    <h3 style="color:red">%%%%%%%%%%%%%%%%%%%</h3>
+    <form action="/kingdoms/<%= data.id %>" method="POST">
+        <h2>Take District!</h2>
+        <% distrik.forEach(elemen=>{ %>
+            <input type="radio" name="districtName" value="<%= elemen.id %>"><%= elemen.districtName %><br>
+        <% }) %>
+        
+        <input type="submit" value="Get District">
+
+    </form>
+
 </body>
+
 </html>

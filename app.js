@@ -3,6 +3,7 @@ const app = express()
 
 // router
 const Kingdoms = require('./routes/Kingdom.js')
+const Soldiers = require('./routes/Soldier.js')
 
 app.set ('view engine', 'ejs')
 app.use(express.urlencoded({extended:false}))
@@ -10,6 +11,7 @@ app.use(express.json())
 
 //menggunakan router
 app.use('/kingdoms',Kingdoms)
+app.use('/soldiers',Soldiers)
 
 
 
