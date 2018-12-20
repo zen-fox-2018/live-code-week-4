@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Kingdom</title>
+        <%- include('./partials/navbarStyle.ejs') %>
+        <%- include('./partials/tableStyle.ejs')%>
+    </head>
+    <header>
+        <%- include('./partials/navbar.ejs') %>
+    </header>
+    <body>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Detail</th>
+            </tr>
+            <% kingdom.forEach((kingdom) => {%>
+                <tr>
+                    <td><%= kingdom.kingdomName%></td>
+                    <td><a href = '/kingdoms/<%= kingdom.id%>'>Detail</a></td>
+                </tr>
+            <%})%>
+            
+        </table>
+    </body>
+
+</html>
