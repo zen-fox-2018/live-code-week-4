@@ -13,14 +13,12 @@
           <th>Kingdom</th>
           <th>Action</th> 
         </tr>
-        <% kingdoms.forEach(function(kingdom) { %>
+        <% kingdoms.forEach(kingdom => { %>
           <tr>
-          <td><%= kingdom.kingdomName %></td>
-          <td><a href="/kingdoms/<%=kingdom.id"%>details</a></td> 
-        </tr>
-        <%})%>   
-          
-
+            <td><%= kingdom.kingdomName %></td>
+            <td><a href="/kingdoms/<%=kingdom.id%>">detail</a></td>
+          </tr>
+        <%})%>
       </table>
   
 </body>

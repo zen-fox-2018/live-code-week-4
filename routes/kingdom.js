@@ -1,6 +1,7 @@
 const Model = require('../models')
 const express = require('express')
 const router = express.Router()
+const getTotal = require('../helpers/getTotal')
 
 router.get('/', function(req,res) {
   Model.Kingdom
@@ -16,14 +17,18 @@ router.get('/', function(req,res) {
 })
 
 router.get('/:kingdomId', function(req,res) {
+  let id = req.params.kingdomId
   Model.Kingdom
-    .findByPk(req.params.id)
+    .findAll({where: {id : id}, include : {model : Model.District, model:Model.Soldier}})  
     .then(function(kingdom) {
-      res.send(kingdom)
-    })
+      // res.send(kingdom[0])
+      res.render('kingdomDetil.ejs' ,{kingdom:kingdom[0], getTotal:getTotal})
+    }) 
     .catch(function(err) {
-      res.redirect('/kingdoms?msg=somethingeror')
-    })
+      res.send(err)
+    }) 
 })
+
+
 
 module.exports = router
