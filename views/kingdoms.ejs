@@ -12,7 +12,11 @@
   </tr>
   <%data.forEach(function(kingdom) {%>
     <tr>
-      <td><%=kingdom.kingdomName%></td>
+      <%if (kingdom.DistrictId !== null) {%>
+        <td style="color:yellow"><%=kingdom.kingdomName%></td>
+      <%} else { %>
+        <td style><%=kingdom.kingdomName%></td>
+      <%}%>
       <td><a href="/kingdoms/<%=kingdom.id%>">Details</a></td>
     </tr>
   <%})%>

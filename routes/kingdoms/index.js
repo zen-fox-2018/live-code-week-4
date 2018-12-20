@@ -6,6 +6,7 @@ const totalAttack = require('../../helpers/totalAttack')
 routes.get('/', function (req, res) {
   Kingdom.findAll()
     .then(function(kingdoms) {
+      // res.send(kingdoms)
       res.render('kingdoms', {data: kingdoms})
     })
     .catch(function(err) {
@@ -31,7 +32,6 @@ routes.get('/:id', function (req, res) {
 routes.post('/:id', function (req, res) {
   let kingdomOponentATK = 0
   let kingdomATK = 0
-  console.log("===============");
   Kingdom.checkDistrict(req.body.DistrictId)
     .then(function(kingdomId) {
       if (kingdomId === null) {
@@ -52,7 +52,7 @@ routes.post('/:id', function (req, res) {
           .then(function (kingdomOponent) {
             kingdomOponentATK = totalAttack(kingdomOponent.dataValues.Soldiers)
             if (kingdomOponentATK >= kingdomATK) {
-              throw new Error('Failed to get District')
+              res.send('Failed to get District')
             }
             else {
               return Kingdom.update({DistrictId: req.body.DistrictId }, {where: {id: req.params.id}})
