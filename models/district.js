@@ -6,9 +6,9 @@ module.exports = (sequelize, DataTypes) => {
     population: DataTypes.INTEGER
   }, {});
 
-  District.prototype.setdistrict = function() {
-    return setDistrict(districtName)
-  }
+  // District.prototype.setdistrict = function() {
+  //   return setDistrict(districtName)
+  // }
 
   District.associate = function(models) {
     // associations can be defined here
