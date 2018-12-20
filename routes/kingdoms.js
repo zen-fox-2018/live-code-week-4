@@ -13,19 +13,32 @@ router.get('/',function(req,res) {
 })
 
 router.get('/:kingdomId', function(req,res) {
-    let kingdom = ''
+    let kingdomdata = ''
     Model.Kingdom.findOne({include :[{model : Model.Soldier}], where : { id : req.params.kingdomId}})
     .then(data => {
-        kingdom = data
-        return Model.kingdom.findOne({include : [ {model : Model.District}], where: {id: req.params.kingdomId}})
-      //  res.render('kingdomdetail', {Kingdom: data})
-        //res.send(data)
+        kingdomdata = data
+     //  res.send(kingdomdata)
+     return Model.Kingdom.findOne({include : [ {model : Model.District}], where: {id: req.params.kingdomId}})
+
     })
-    .then(kingdoms => {
-        res.send(kingdoms)
+    .then(district => {
+       res.render('kingdomdetail',{Kingdom : kingdomdata, district : district })
     })
     .catch(err => {
-        res.redirect('/:kingdomId/?error=data slah')
+        res.send(err)
+    })
+})
+
+router.post('/soldier/:kingdomId',function(req,res) {
+
+    let obj = {
+            name : req.body.name,
+            attact :  Number(req.body.attact),
+            KingdomId : req.params.kingdomId
+    }
+    Model.Soldier.create(obj)
+    .then(soldier => {
+        res.send(soldier)
     })
 })
 

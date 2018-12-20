@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Kingdom.associate = function(models) {
     Kingdom.hasMany (models.Soldier)
-  //  Kingdom.belongsTo (models.District)
+    Kingdom.hasOne (models.District)
   };
   return Kingdom;
 };
