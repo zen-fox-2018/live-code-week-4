@@ -1,8 +1,16 @@
+const Model = require('../models')
+
 function getDistrict(input) {
   if(input == null) {
     return 'unassigned'
   }else {
-    return input.districtName
+    Model.District.findByPk(input)
+      .then(function(district) {
+        return district.dataValues.districtName
+      })
+      .catch(function(err) {
+        throw err
+      })  
   }
 }
 

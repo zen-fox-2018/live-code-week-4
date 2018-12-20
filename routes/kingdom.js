@@ -28,8 +28,7 @@ router.get('/:kingdomId', function(req,res) {
       .findAll({where: {id : id}, include : {model : Model.District, model:Model.Soldier}}) 
     })
   .then(function(kingdom) {
-    res.send(kingdom)
-    // res.render('kingdomDetil.ejs' ,{kingdom:kingdom[0], getTotal:getTotal, msg:msg, getDistrict:getDistrict, districts:districts})
+    res.render('kingdomDetil.ejs' ,{kingdom:kingdom[0], getTotal:getTotal, msg:msg, getDistrict:getDistrict, districts:districts})
   }) 
   .catch(function(err) {
     res.send(err)
