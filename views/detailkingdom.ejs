@@ -77,7 +77,34 @@
             <td>
                <%= Kingdom.kingdomName %>
                <br>
-               
+               <%- checkDistrict(Kingdom.District)%>
+               <br>
+               <%= Kingdom.getTotalPasukan() %>
+            </td>
+            <td>
+                <form action="/soldiers/<%= Kingdom.id%>" method="POST">
+                    <table>
+                        <tr>
+                            <th>Name: </th>
+                            <th>Attack:</th>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="name" placeholder="Soldier Name"></td>
+                            <td><input type="text" name="attack" placeholder="Soldier Attack"></td>
+                            <tr>
+                                <td><button type="submit">Add Soldier</button></td>
+                            </tr>
+                        </tr>
+                    </table>
+                </form>
+            </td>
+            <td>
+                <form action="/kingdoms/<%= Kingdom.id %>">
+                    <% Districts.forEach( dataDistrict => { %>
+                        <input type="radio" name="DistrictId" id="<%= dataDistrict.id %>"  value="<%= dataDistrict.id %> "  > <%= dataDistrict.districtName %>  <br>
+                    <% }) %>
+                    <button type="submit">Get District</button>
+                </form>
             </td>
        </tr>
       </table>

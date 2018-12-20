@@ -5,6 +5,11 @@ module.exports = (sequelize, DataTypes) => {
     nameOfKing: DataTypes.STRING,
     DistrictId: DataTypes.INTEGER
   }, {});
+
+  Kingdom.prototype.getTotalPasukan = function() {
+    return `totalSoldier ${this.Soldiers.length} pasukan`
+  }
+
   Kingdom.associate = function(models) {
     // associations can be defined here
     Kingdom.hasMany(models.Soldier)
