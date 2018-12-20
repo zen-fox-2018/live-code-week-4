@@ -21,7 +21,16 @@ router.post('/:kingdomId',(req,res)=>{
 })
 
 router.get('/',(req,res)=>{
-    Model.Soldiers.findAll()
+    Model.Soldiers.findAll(
+        {
+        
+            include : [
+                {
+                    model : Model.Kingdoms
+                }
+            ]
+        }
+    )
     .then(allDataSoldiers=>{
         res.send(allDataSoldiers)
     })
