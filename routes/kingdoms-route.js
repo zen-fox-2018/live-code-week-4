@@ -1,7 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const Model = require('../models')
-const checkDistrict = require('../helpers/unassigned-district')
+// const checkDistrict = require('../helpers/unassigned-district')
+// const checkOwnedDistrict = require('../helpers/checkOwnedDistrict')
 
 router.get('/', (req, res)=>{
   Model.Kingdom
@@ -75,9 +76,17 @@ router.post('/:kingdomId', (req,res)=>{
     // res.redirect('/kingdoms')
 
     return Model.Kingdom
-    .update(objDistrict, {
-      where:
-      {id:req.params.kingdomId}
+    .findAll({where: 
+      {DistrictId: req.body.districtName}
+    })
+    .then(ownedDistrict =>{
+      if (ownedDistrict === null){        
+        return Model.Kingdom
+        .update(objDistrict, {
+          where:
+          {id:req.params.kingdomId}
+        })
+      }
     })
   })
   .then(data =>{
