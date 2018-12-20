@@ -15,7 +15,7 @@ router.post('/:kingdomId', function( req, res ) {
     // updatedAt : new Date()
   })
     .then( created => {
-      res.send(created)
+      res.redirect('/kingdomds/'+ req.param.kingdomId)
     })
     .catch( err => {
       res.send(err) ///////////////////
