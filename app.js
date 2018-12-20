@@ -25,6 +25,7 @@ app.get('/kingdoms', (req, res) => {
 
 app.get('/kingdoms/:kingdomId', (req, res) => {
   let id = req.params.kingdomId
+  let err = req.query.err
   let detailKingdom = {}
   let listDistricts = []
 
@@ -53,7 +54,8 @@ app.get('/kingdoms/:kingdomId', (req, res) => {
       kingdom: detailKingdom,
       jumlahPasukan: jumlah,
       getDistrict: getDistrict,
-      districts: listDistricts
+      districts: listDistricts,
+      err: err
     })
   })
 
@@ -72,15 +74,34 @@ app.post('/soldiers/:kingdomId', (req, res) => {
   // res.send(newSoldier)
   Model.Soldier.create(newSoldier)
     .then((soldier) => {
-      res.send(soldier)
+      res.redirect(`/kingdoms/${kingdomId}`)
+    })
+
+    .catch((err) => {
+      // res.send(err)
+      res.redirect(`/kingdoms/${kingdomId}?err=${err}`)
+    })
+})
+
+app.post('/kingdoms/:kingdomId', (req, res) => {
+  let kingdomId = req.params.kingdomId
+  // res.send(kingdomId)
+  let districtId = req.body.districtId
+  Model.Kingdom.update(
+    {
+      DistrictId: districtId
+    }, {
+      where: {
+        id: kingdomId
+      }
+    }
+  )
+    .then((data) => {
+      res.redirect(`/kingdoms/${kingdomId}`)
     })
 
     .catch((err) => {
       res.send(err)
     })
-})
-
-app.post('/kingdoms/:kingdomId', (req, res) => {
-  let 
 })
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

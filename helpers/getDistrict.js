@@ -2,7 +2,7 @@ function getDistrict(district) {
   if (!district) {
     return `unassigned`
   } else {
-    return district.districtName;
+    return district;
   }
 }
 
