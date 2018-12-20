@@ -32,7 +32,7 @@
       <thead>
         <% dataKingdoms.forEach(kingdoms => { %>
         <tr>
-          <th>
+          <th style="text-align: center">
             <%= kingdoms.kingdomName %>
           </th>
         </tr>
@@ -40,8 +40,8 @@
 
       <tbody>
         <tr>
-          <td>
-            <a href="">Details</a>
+          <td style="text-align: center">
+            <a href="/kingdoms/<%= kingdoms.id %>">Details</a>
           </td>
         </tr>
         <% }) %>
