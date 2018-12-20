@@ -1,5 +1,19 @@
 const route = require('express').Router()
-const { Soldier } = require('../models')
+const { Soldier, Kingdom } = require('../models')
+
+route.get('/', (req, res) => {
+    Soldier.findAll({
+        include: [{
+            model: Kingdom
+        }]
+    })
+    .then(soldiers => {
+        res.render('soldier.ejs', {soldiers})
+    })
+    .catch(err => {
+        res.send(err)
+    })
+})
 
 route.post('/:kingdomId', (req,res) => {
     // console.log(req.body, '==========')

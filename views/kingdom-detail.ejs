@@ -11,17 +11,14 @@
         <tr>
             <td><%= kingdom.kingdomName %></td>
             <td><%= kingdom.nameOfKing %></td>
-            <td><%= kingdom.nameOfKing %></td>
         </tr>
     </table>
     <h1>Add Soldier</h1>
-    <form action="/soldiers/<%= kingdom.id %>" method="POST">
+    <form action="/soldiers/<%=kingdom.id%>" method="POST">
         <label for="">Name</label>
         <input type="text" name="name">
         <label for="">Attack</label>
         <input type="number" name="attack">
         <button>Add Soldier</button>
-    </form>
-
-   
+    </form>   
 </table>

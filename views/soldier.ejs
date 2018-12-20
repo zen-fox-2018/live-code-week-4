@@ -1,0 +1,19 @@
+<%- include partials/header.ejs %>
+<%- include partials/navbar.ejs %>
+
+<table>
+    <tr>
+        <th>No</th>
+        <th>Kingdom Name</th>
+        <th>Total Soldier</th>
+        <th>Total Attack</th>
+    </tr>
+    <% soldiers.forEach((soldier, i) => { %>
+        <tr>
+            <td><%=i+1%></td>
+            <td><%= soldier.Kingdom.kingdomName %></td>
+            <td></td>
+            <td></td>
+        </tr>
+    <% }) %>
+</table>

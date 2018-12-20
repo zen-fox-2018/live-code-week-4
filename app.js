@@ -2,7 +2,7 @@ const express = require('express')
 
 const route = require('./routes')
 const kingdom = require('./routes/kingdom')
-const soldier = require('./models/soldier')
+const soldier = require('./routes/soldier')
 
 const app = express()
 const port = 3000
