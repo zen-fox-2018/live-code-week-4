@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Kingdom</title>
+        <%- include('./partials/navbarStyle.ejs') %>
+    </head>
+    <header>
+        <%- include('./partials/navbar.ejs') %>
+    </header>
+    <body>
+        <h2><%= kingdom.kingdomName %></h2>
+        <h3><%= kingdom.District %></h3>
+        <h4>Total Soldier: <%= kingdom.Soldiers.length %> Pasukan</h4>
+        <br><br>
+        <h2>Add Soldier</h2>
+        <form method = "POST">
+            Name:<br>
+            <input type="text" name="name" >
+            <br>
+            Attack:<br>
+            <input type="text" name="attack" >
+            <br><br>
+            <input type="submit" value="Submit">
+        </form> 
+
+        <form method = "POST">
+            <% district.forEach((district) => {
+                if (kingdom.District === district.districtName) {%>
+                    <input type="radio" name= "<%= district.districtName %>" value="<%= district.districtName %>" checked> <%= district.districtName %><br>
+                <%} else {%>
+                    <input type="radio" name= "<%= district.districtName %>" value="<%= district.districtName %>"> <%= district.districtName %><br>
+                <%}})%>
+            <input type="submit" value="Submit">
+        </form> 
+    </body>
+</html>

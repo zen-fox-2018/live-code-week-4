@@ -3,6 +3,7 @@
     <head>
         <title>Kingdom</title>
         <%- include('./partials/navbarStyle.ejs') %>
+        <%- include('./partials/tableStyle.ejs')%>
     </head>
     <header>
         <%- include('./partials/navbar.ejs') %>
@@ -13,9 +14,13 @@
                 <th>Name</th>
                 <th>Detail</th>
             </tr>
-            <tr>
-                <td></td>
-            </tr>
+            <% kingdom.forEach((kingdom) => {%>
+                <tr>
+                    <td><%= kingdom.kingdomName%></td>
+                    <td><a href = '/kingdoms/<%= kingdom.id%>'>Detail</a></td>
+                </tr>
+            <%})%>
+            
         </table>
     </body>
 
