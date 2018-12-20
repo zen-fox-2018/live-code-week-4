@@ -17,10 +17,10 @@
       <td><%= dataKingdom.kingdomName %></td>
     </tr>
     <tr>
-      <td>total soldiers: <%= jumlahPasukan %> </td>
+      <td>total soldiers: <%= jumlahPasukan %> pasukan </td>
     </tr>
     <tr>
-      <td>District</td>
+      <td>unassigned</td>
     </tr>
   </table>
 
@@ -33,10 +33,10 @@
     <input type="submit" value="Add Soldier">
   </form>
 
-  <form>
+  <form action = "/kingdoms/<%=dataKingdom.id%>" method="POST">
       <h3>DISTRICT</h3>
      <% dataDistrict.forEach(e => { %>
-        <input type="radio" name="districtName"><%= e.districtName%> <br>
+        <input type="radio" name="districtName" value="<%= e.id %>"><%= e.districtName%> <br>
       <% }) %>
       <input type="submit" value="get district">
   </form>

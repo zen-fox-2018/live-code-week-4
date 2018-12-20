@@ -3,13 +3,13 @@ module.exports = (sequelize, DataTypes) => {
   const Soldier = sequelize.define('Soldier', {
     name:{
       type:DataTypes.STRING,
-      validates:{
+      validate:{
         len : [3,10]
       }
     } ,
     attack: {
       type:DataTypes.INTEGER,
-      validates:{
+      validate:{
         min: 100,
         max: 1000,
       }
