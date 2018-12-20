@@ -40,56 +40,60 @@ route.get('/:kingdomId' , (req, res ) => {
 })
 
 route.post('/:kingdomId' , (req, res ) => {
-    Kingdom.findAll({where: {
-        DistrictId: req.body.DistrictId
-    }, include: [{ model: Soldier}]})
-        .then(data => {
-            if(data == '[]') {
-                Kingdom.update({DistrictId: req.body.DistrictId}, {where: {id: req.params.kingdomId}})
-                    .then(habisup => {
-                        res.redirect(`/kingdoms/${req.params.kingdomId}?msg = success add district`)
+    // Kingdom.findAll({where: {
+    //     DistrictId: req.body.DistrictId
+    // }})
+    //     .then(data => {
+    //         if(data == '[]') {
+                Kingdom.findByPk(req.params.kingdomId) //g bs keupdate
+                    .then(mykingdom => {
+                        mykingdom.save({DistrictId: req.body.DistrictId})
+                            .then(habisup => {
+                                res.redirect(`/kingdoms/${req.params.kingdomId}?msg = success add district`)
+                            })
+                            .catch(errUp => {
+                                res.send(errUp)
+                            })
                     })
-                    .catch(errUp => {
-                        res.send(errUp)
-                    })
-            } else {
-                Kingdom.findOne({where: {id: req.params.kingdomId}, include: [{model: Soldier}]})
-                    .then(dataKingdom => {
-                        // res.send(dataKingdom)
-                        let atkLawan = 0
-                        let atkMe = 0
-                        for (let i = 0; i < data.Soldiers.length; i++) {
-                            atkLawan += data.Soldiers[i].attack
-                        }
-                        for (let i = 0; i < dataKingdom.Soldiers.length; i++) {
-                            atkMe += dataKingdom.Soldiers[i].attack
-                        }
+            // } 
+            // else {
+            //     Kingdom.findOne({where: {id: req.params.kingdomId}, include: [{model: Soldier}]})
+            //         .then(dataKingdom => {
+            //             // res.send(dataKingdom)
+            //             let atkLawan = 0
+            //             let atkMe = 0
+            //             for (let i = 0; i < data.Soldiers.length; i++) {
+            //                 atkLawan += data.Soldiers[i].attack
+            //             }
+            //             for (let i = 0; i < dataKingdom.Soldiers.length; i++) {
+            //                 atkMe += dataKingdom.Soldiers[i].attack
+            //             }
 
-                        if(atkLawan < atkMe) {
-                            dataKingdom.save({DistrictId: req.body.DistrictId})
-                                .then(success => {
-                                    data.save({DistrictId: null})
-                                        .then(successDel => {
-                                            res.redirect(`/kingdoms/${req.params.kingdomId}?msg = success add district`)
-                                        })
-                                        .catch(errDel => {res.send(errDel)})
-                                })
-                                .catch(errSave => {
-                                    res.redirect(`/kingdoms/${req.params.kingdomId}?msg = failed add district`)
-                                })
-                        } else {
-                            res.redirect(`/kingdoms/${req.params.kingdomId}?msg = failed add district`)
-                        }
-                    })
-                    .catch(errKingdom => {
-                        res.send(errKingdom)
-                    })
+            //             if(atkLawan < atkMe) {
+            //                 dataKingdom.save({DistrictId: req.body.DistrictId})
+            //                     .then(success => {
+            //                         data.save({DistrictId: null})
+            //                             .then(successDel => {
+            //                                 res.redirect(`/kingdoms/${req.params.kingdomId}?msg = success add district`)
+            //                             })
+            //                             .catch(errDel => {res.send(errDel)})
+            //                     })
+            //                     .catch(errSave => {
+            //                         res.redirect(`/kingdoms/${req.params.kingdomId}?msg = failed add district`)
+            //                     })
+            //             } else {
+            //                 res.redirect(`/kingdoms/${req.params.kingdomId}?msg = failed add district`)
+            //             }
+            //         })
+            //         .catch(errKingdom => {
+            //             res.send(errKingdom)
+            //         })
                 // res.send(data)
-            }
-        })
-        .catch(err => {
-            res.send(err)
-        })
+            // }
+        // })
+        // .catch(err => {
+        //     res.send(err)
+        // })
 })
 
 module.exports = route
