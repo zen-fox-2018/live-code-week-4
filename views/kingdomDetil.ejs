@@ -16,14 +16,15 @@
         </tr>
         <tr>
           <td><%= kingdom.kingdomName %></td>
-          <td><%= kingdom.DistrictId %></td> 
+          <td><%= getDistrict(kingdom.DistrictId) %></td> 
           <td><%= getTotal(kingdom.Soldiers)%></td>
         </tr>
     </table>
     <br><br>
-    <form action="/soliers/<%=kingdom.id%>" method="POST">
+    <%= msg %>
+    <form action="/soldiers/<%=kingdom.id%>" method="POST">
         Name:<br>
-        <input type="text" name="nama"><br>
+        <input type="text" name="name"><br>
         Attack:<br>
         <input type="text" name="attack">
         <br><br>
@@ -32,9 +33,10 @@
     <br>
     <br><br>  
     <form action="/kingdoms/<%=kingdom.id%>" method="POST">
-        <input type="radio" name="gender" value="male"> Male<br>
-        <input type="radio" name="gender" value="female"> Female<br>
-        <input type="radio" name="gender" value="other"> Other
+      <% districts.forEach(district => { %>
+        <input type="radio" name="district" value="<%=district.id%>"> <%=district.districtName%> <br>
+      <%})%>
+        <input type = "submit" value = "get District">
     </form>
   
     <br>

@@ -5,9 +5,15 @@ module.exports = (sequelize, DataTypes) => {
     nameOfKing: DataTypes.STRING,
     DistrictId: DataTypes.INTEGER,
     population : DataTypes.INTEGER
-  }, {});
+  }, {
+    hooks : {
+      afterUpdate : (value) => {
+        console.log(value)
+        return sequelize .models.District.update({KingdomId : value.dataValues.id}, {where : {id : value.dataValues.DistrictId }})
+      }
+    }
+  });
   Kingdom.associate = function(models) {
-    // associations can be defined here
     Kingdom.hasMany(models.Soldier)
     Kingdom.hasOne(models.District)
   };
