@@ -9,25 +9,28 @@ app.get('/', function(req, res) {
   res.send('Hello World')
 })
 
-
-
-
 app.get('/kingdoms', function(req, res) {
   Model.Kingdom.findAll({})
   .then(kingdoms =>{
-    res.send(kingdoms)
+    res.render('viewKingdom.ejs',{data: kingdoms})
   })
   .catch(err =>{
     res.send(err)
   })
 })
 
-
-
-
-
-
-
+app.get('/kingdoms/:kingdomId', function(req, res) {
+  Model.Kingdom.findByPk(req.params.id)
+  .then(kingdoms =>{
+    res.send(kingdoms.kingdomName) 
+    // res.render('viewKingdomDetail.ejs',{
+    //   data: kingdoms
+    // })
+  })
+  .catch(err =>{
+    res.send(err)
+  })
+})
 
 
 
