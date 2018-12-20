@@ -28,7 +28,6 @@ router.get('/:kingdomId', (req, res) => {
         return Model.District.findAll()
     })
     .then(district => {
-        // res.send(kingdomData)
         res.render('kingdomDetail', {kingdom: kingdomData, districtName: setDistrict(kingdomData.District), district: district})
     })
     .catch((err) => {
@@ -37,8 +36,6 @@ router.get('/:kingdomId', (req, res) => {
 })
 
 router.post('/:kingdomId', (req, res) => {
-    // res.send(req.body)
-    res.send(req.params.id)
     Model.District.findOne({where: {
         districtName: req.body.name
     }})
