@@ -7,9 +7,21 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
 
   Soldier.getJumlahPasukan = (id) => {
-    Soldeir.findAll({
-        attributes: [[sequelize.fn('COUNT', sequelize.col('id')), 'jumlahPasukan']]
-    });
+    return new Promise((resolve, reject) => {
+      Soldier.findAll({
+        where: {
+          KingdomId: id
+        }
+      })
+
+      .then((soldiers) => {
+        resolve (`${soldiers.length} pasukan`)
+      })
+
+      .catch((err) => {
+        reject(err)
+      })
+    })
   }
 
   Soldier.associate = function(models) {

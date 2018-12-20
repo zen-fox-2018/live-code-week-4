@@ -50,16 +50,51 @@
             <div class="main-content-inner">
               <div class="card-area">
                   <div class="row">
-                      <div class="col-lg-4 col-md-6 mt-5">
-                          <div class="card card-bordered">
-                              <div class="card-body">
-                                  <h5 class="title"><%= kingdom.kingdomName %></h5>
-                                  <p class="card-text">
-                                    
-                                  </p>
-                              </div>
-                          </div>
-                      </div>
+                    <div class="col-lg-4 col-md-6 mt-5">
+                        <div class="card card-bordered">
+                            <div class="card-body">
+                                <h3 class="title"><%= kingdom.kingdomName %></h3>
+                                <h5>District : <%= getDistrict(kingdom.District) %></h5>
+                                <p class="card-text">
+                                  Jumlah Pasukan : <%= jumlahPasukan %>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="header-title">Add Soldier</h4>
+                                <form action="/soldiers/<%= kingdom.id %>" method="post">
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <input type="text" class="form-control" name="soldierName">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Attack</label>
+                                        <input type="text" class="form-control" name="attack">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4 mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="header-title">District</h4>
+                                <form action="">
+                                  <% districts.forEach( district => { %>
+                                    <div class="custom-control custom-radio">
+                                      <input type="radio" id="customRadio<%= district.id %>" name="districtId" class="custom-control-input">
+                                      <label class="custom-control-label" for="customRadio<%= district.id %>"><%= district.districtName %></label>
+                                    </div>
+                                  <% }) %>
+                                  <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                   </div>
               </div>
             </div>
