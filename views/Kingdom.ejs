@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Live Code Week 4</title>
+    <%- include ./partials/style.ejs  %>
+</head>
+<body>
+        <%- include ./partials/header.ejs  %>
+        <table style="width:100%">
+                <tr>
+                  <th>Kingdom Name</th>
+                  <th>King Name </th> 
+                  <th>Detail</th>
+                </tr>
+                <% data.forEach(element=>{ %>
+                    <% if (!element.DistrictId){ %>
+                    <tr style="color:yellow">
+                            <td><p><%= element.kingdomName %></p></td>
+                       <% } else { %>
+                        <tr>
+                        <td><p><%= element.kingdomName %></p></td>
+                       <% } %>
+                            <td><%= element.nameOfKing %></td> 
+                            <td><a href="/kingdoms/<%= element.id %>">Kingdom detailed data </a></td>
+                          </tr>
+               <% }) %>
+                               
+              </table>
+    
+</body>
+</html>
