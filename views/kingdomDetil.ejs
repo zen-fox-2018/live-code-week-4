@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+    <%- include ./partials/nav.ejs %>
+    <table border="1">
+        <tr>
+          <th>Nama Kingdom</th>
+          <th>Nama District</th> 
+          <th>Total Soldier</th>
+        </tr>
+        <tr>
+          <td><%= kingdom.kingdomName %></td>
+          <td><%= getDistrict(kingdom.DistrictId) %></td> 
+          <td><%= getTotal(kingdom.Soldiers)%></td>
+        </tr>
+    </table>
+    <br><br>
+    <%= msg %>
+    <form action="/soldiers/<%=kingdom.id%>" method="POST">
+        Name:<br>
+        <input type="text" name="name"><br>
+        Attack:<br>
+        <input type="text" name="attack">
+        <br><br>
+        <input type="submit" value="add Soldier">
+    </form>
+    <br>
+    <br><br>  
+    <form action="/kingdoms/<%=kingdom.id%>" method="POST">
+      <% districts.forEach(district => { %>
+        <input type="radio" name="district" value="<%=district.id%>"> <%=district.districtName%> <br>
+      <%})%>
+        <input type = "submit" value = "get District">
+    </form>
+  
+    <br>
+
+  
+</body>
+</html>
